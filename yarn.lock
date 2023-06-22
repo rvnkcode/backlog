@@ -1633,6 +1633,11 @@ svelte@^3.54.0:
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.59.2.tgz#a137b28e025a181292b2ae2e3dca90bf8ec73aec"
   integrity sha512-vzSyuGr3eEoAtT/A6bmajosJZIUWySzY2CzB3w2pgPvnkUjGqlDnsNnA0PMO+mMAhuyMul6C2uuZzY6ELSkzyA==
 
+sveltekit-superforms@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/sveltekit-superforms/-/sveltekit-superforms-1.1.1.tgz#b4baaebba77933c3b705a1dec656de6f86ca2920"
+  integrity sha512-lD3ov06C/O8hD7mCzEQZ7CTsbHrh6kWhRP3njI9ZSwvG5DW6vhfi6Re/cyYy//cS0oMONI0xBieWyr9s24Y9jA==
+
 text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
