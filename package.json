@@ -11,7 +11,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"seed": "prisma db seed"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.35.1",
@@ -41,5 +42,8 @@
 	"dependencies": {
 		"@prisma/client": "4.16.0",
 		"zod": "^3.21.4"
+	},
+	"prisma": {
+		"seed": "tsx prisma/seed.ts"
 	}
 }
