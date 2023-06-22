@@ -3,6 +3,6 @@
 </header>
 
 <form method="post">
-	<input type="text" name="title" placeholder="New To-Do" />
+	<input type="text" name="title" placeholder="New To-Do" required />
 	<button type="submit">Add</button>
 </form>
