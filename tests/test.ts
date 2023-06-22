@@ -1,9 +1,14 @@
 import { expect, test } from '@playwright/test';
+import { createMock } from 'zodock';
 
-test('display test', async ({ page }) => {
-	await page.goto('/');
-	await expect(page.getByRole('heading', { name: 'Backlog' })).toBeVisible();
-	await expect(page.getByRole('heading', { name: 'Inbox' })).toBeVisible();
-	await expect(page.getByPlaceholder('New To-Do')).toBeVisible();
-	await expect(page.getByRole('button', { name: 'Add' })).toBeVisible();
+import { taskSchema } from '../src/lib/zod';
+
+const mockedTask = createMock(taskSchema);
+
+test(`should create a task`, async ({ request }) => {
+	const task = await request.post('/?/create_task', {
+		form: { ...mockedTask }
+	});
+
+	expect(task.ok()).toBeTruthy();
 });
