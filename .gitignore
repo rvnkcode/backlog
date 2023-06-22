@@ -14,3 +14,4 @@ vite.config.ts.timestamp-*
 /playwright/.cache/
 /tests-examples
 /e2e/example.spec.ts
+prisma/migrations
