@@ -10,7 +10,7 @@
 	const { form, enhance } = superForm(data);
 </script>
 
-<form method="post" action="/?/createTask" use:enhance>
+<form method="post" action="/?/create_task" use:enhance>
 	<input type="text" name="title" placeholder="New To-Do" required bind:value={$form.title} />
 	<button type="submit">Add</button>
 </form>

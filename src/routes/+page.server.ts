@@ -11,7 +11,7 @@ export const load = (async () => ({
 })) satisfies PageServerLoad;
 
 export const actions = {
-	createTask: async ({ request }) => {
+	create_task: async ({ request }) => {
 		const form = await superValidate(request, taskSchema);
 
 		if (!form.valid) {
