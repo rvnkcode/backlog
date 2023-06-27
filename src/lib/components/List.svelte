@@ -10,9 +10,9 @@
 			<li>
 				<label>
 					<input type="checkbox" checked={t.isDone} />
-					<span>
+					<a href={`./task/${t.id}`}>
 						{t.title}
-					</span>
+					</a>
 				</label>
 			</li>
 		{/each}
