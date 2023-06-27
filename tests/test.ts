@@ -5,7 +5,7 @@ import { taskSchema } from '../src/lib/zod';
 
 const mockedTask = createMock(taskSchema);
 
-test(`should create a task`, async ({ request }) => {
+test(`API: should create a task`, async ({ request }) => {
 	const task = await request.post('/?/create_task', {
 		form: { ...mockedTask }
 	});
