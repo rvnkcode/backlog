@@ -7,7 +7,7 @@
 
 	export let data: SuperValidated<TaskSchema>;
 
-	const { form, enhance } = superForm(data);
+	const { form, enhance, allErrors } = superForm(data);
 </script>
 
 <form method="post" action="/?/create_task" use:enhance>
@@ -16,3 +16,11 @@
 </form>
 
 <SuperDebug data={$form} />
+
+{#if $allErrors.length}
+	<ul>
+		{#each $allErrors as error}
+			<li><span>{error.path}: {error.messages}</span></li>
+		{/each}
+	</ul>
+{/if}
