@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { RouterOutput } from '$lib/server/router';
+	import EachTask from './EachTask.svelte';
 
 	export let tasks: RouterOutput['inbox']['getInbox'];
 </script>
@@ -7,14 +8,7 @@
 {#if tasks.length}
 	<ul>
 		{#each tasks as t}
-			<li>
-				<label>
-					<input type="checkbox" checked={t.isDone} />
-					<a href={`./task/${t.id}`} class="cursor-pointer">
-						{t.title}
-					</a>
-				</label>
-			</li>
+			<EachTask task={t} />
 		{/each}
 	</ul>
 {:else}
