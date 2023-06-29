@@ -24,5 +24,29 @@ export const actions = {
 		await prisma.task.create({
 			data: { ...form.data }
 		});
+	},
+
+	update_task: async ({ request }) => {
+		const form = await superValidate(request, taskSchema);
+
+		if (!form.valid) {
+			return fail(400, { input: form });
+		}
+
+		const { id, ...others } = form.data;
+
+		if (id == null) {
+			return fail(403, { input: form });
+		}
+
+		try {
+			await prisma.task.update({
+				data: others,
+				where: { id }
+			});
+		} catch (error) {
+			console.error(error);
+			return fail(400, { input: form });
+		}
 	}
 } satisfies Actions;

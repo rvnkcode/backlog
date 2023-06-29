@@ -6,13 +6,18 @@
 	import type { TaskSchema } from '$lib/zod';
 
 	export let data: SuperValidated<TaskSchema>;
+	export let isEdit = false;
 
 	const { form, enhance, allErrors } = superForm(data);
 </script>
 
-<form method="post" action="/?/create_task" use:enhance>
+<form method="post" action={isEdit ? '/?/update_task' : '/?/create_task'} use:enhance>
+	{#if isEdit}
+		<input type="hidden" name="id" bind:value={$form.id} />
+	{/if}
+
 	<input type="text" name="title" placeholder="New To-Do" required bind:value={$form.title} />
-	<button type="submit">Add</button>
+	<button type="submit">{isEdit ? `Update` : `Add`}</button>
 </form>
 
 <SuperDebug data={$form} />

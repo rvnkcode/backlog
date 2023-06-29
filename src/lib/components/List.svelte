@@ -4,13 +4,13 @@
 	export let tasks: RouterOutput['inbox']['getInbox'];
 </script>
 
-{#if tasks.length > 0}
+{#if tasks.length}
 	<ul>
 		{#each tasks as t}
 			<li>
 				<label>
 					<input type="checkbox" checked={t.isDone} />
-					<a href={`./task/${t.id}`}>
+					<a href={`./task/${t.id}`} class="cursor-pointer">
 						{t.title}
 					</a>
 				</label>
