@@ -36,7 +36,8 @@
 				"github.vscode-github-actions",
 				"ZixuanChen.vitest-explorer",
 				"ms-playwright.playwright",
-				"WallabyJs.console-ninja"
+				"WallabyJs.console-ninja",
+				"bradlc.vscode-tailwindcss"
 			],
 			"settings": {
 				"editor.formatOnPaste": true,
