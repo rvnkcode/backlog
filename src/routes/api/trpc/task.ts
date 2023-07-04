@@ -1,3 +1,5 @@
+import { TRPCError } from '@trpc/server';
+
 import { publicProcedure } from '$lib/server/trpc';
 import { router } from '$lib/server/trpc';
 import { idSchema } from '$lib/zod';
@@ -17,6 +19,13 @@ export const taskRouter = router({
 			},
 			where: { id: input }
 		});
+
+		if (task == null) {
+			throw new TRPCError({
+				code: 'BAD_REQUEST',
+				message: `The task doesn't exist`
+			});
+		}
 
 		const today = new Date();
 
