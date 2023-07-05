@@ -26,7 +26,7 @@
 			bind:indeterminate
 			on:click|preventDefault={async () => await updateStatus(task.id)}
 		/>
-		<a href={`./task/${task.id}`} class="cursor-pointer">
+		<a href={`./task/${task.id}`}>
 			{task.title}
 		</a>
 	</label>
