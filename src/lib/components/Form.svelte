@@ -16,8 +16,17 @@
 		<input type="hidden" name="id" bind:value={$form.id} />
 	{/if}
 
-	<input type="text" name="title" placeholder="New To-Do" required bind:value={$form.title} />
-	<button type="submit">{isEdit ? `Update` : `Add`}</button>
+	<div class="flex">
+		<input
+			type="text"
+			name="title"
+			placeholder="New To-Do"
+			required
+			bind:value={$form.title}
+			class="grow"
+		/>
+		<button type="submit">{isEdit ? `Update` : `Add`}</button>
+	</div>
 </form>
 
 <SuperDebug data={$form} />
