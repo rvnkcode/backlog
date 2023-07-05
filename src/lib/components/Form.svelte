@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { IconPlus } from '@tabler/icons-svelte';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
@@ -25,7 +26,7 @@
 			bind:value={$form.title}
 			class="grow"
 		/>
-		<button type="submit">{isEdit ? `Update` : `Add`}</button>
+		<button type="submit"><IconPlus stroke={1} /></button>
 	</div>
 </form>
 
