@@ -48,6 +48,7 @@
 	"type": "module",
 	"dependencies": {
 		"@prisma/client": "4.16.0",
+		"@tabler/icons-svelte": "^2.23.0",
 		"@trpc/client": "^10.32.0",
 		"@trpc/server": "^10.32.0",
 		"date-fns": "^2.30.0",
