@@ -2,6 +2,7 @@
 	import { invalidateAll } from '$app/navigation';
 	import type { RouterOutput } from '$lib/server/router';
 	import { trpc } from '$lib/trpcClient';
+	import { IconTrash } from '@tabler/icons-svelte';
 
 	export let task: RouterOutput['inbox']['getInbox'][number];
 
@@ -18,7 +19,7 @@
 	$: indeterminate = task.isStarted && !task.isDone ? true : false;
 </script>
 
-<li>
+<li class="flex justify-between">
 	<label>
 		<input
 			type="checkbox"
@@ -30,4 +31,5 @@
 			{task.title}
 		</a>
 	</label>
+	<button type="button"><IconTrash stroke={1} /></button>
 </li>
