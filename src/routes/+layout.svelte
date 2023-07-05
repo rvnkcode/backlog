@@ -6,4 +6,6 @@
 	<h1>Backlog</h1>
 </header>
 
-<slot />
+<main>
+	<slot />
+</main>
