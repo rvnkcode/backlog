@@ -56,5 +56,12 @@ export const taskRouter = router({
 				where: { id: input }
 			});
 		}
+	}),
+
+	delete: publicProcedure.input(idSchema).mutation(async ({ ctx, input }) => {
+		return await ctx.prisma.task.update({
+			data: { isTrashed: true },
+			where: { id: input }
+		});
 	})
 });
