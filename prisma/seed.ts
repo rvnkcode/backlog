@@ -1,10 +1,12 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 
+import { inboxTitles, trashTitles } from '../src/lib/const';
+
 const prisma = new PrismaClient();
 
 async function main() {
 	const sample: Prisma.TaskCreateInput = {
-		title: 'This is the sample task',
+		title: inboxTitles[0],
 		isStarted: false,
 		startedAt: null,
 		isDone: false,
@@ -12,15 +14,27 @@ async function main() {
 	};
 
 	const long: Prisma.TaskCreateInput = {
-		title:
-			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+		title: inboxTitles[1],
 		isStarted: false,
 		startedAt: null,
 		isDone: false,
-		completedAt: null
+		completedAt: null,
+		isTrashed: false
 	};
 
-	const tasks = [sample, long];
+	const completed: Prisma.TaskCreateInput = {
+		title: inboxTitles[2],
+		isDone: true,
+		completedAt: new Date(),
+		isTrashed: false
+	};
+
+	const trashed: Prisma.TaskCreateInput = {
+		title: trashTitles[0],
+		isTrashed: true
+	};
+
+	const tasks = [sample, long, completed, trashed];
 
 	for await (const task of tasks) {
 		await prisma.task.upsert({
