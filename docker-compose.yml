@@ -1,6 +1,6 @@
 version: '3.0'
 services:
-  dawn:
+  backlog:
     image: rvnk/backlog:latest
     container_name: backlog
     volumes:
