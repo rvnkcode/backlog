@@ -6,7 +6,7 @@
 </script>
 
 {#if tasks.length}
-	<ul>
+	<ul class="mt-6">
 		{#each tasks as t}
 			<EachTask task={t} />
 		{/each}
