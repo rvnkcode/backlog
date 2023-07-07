@@ -33,7 +33,9 @@
 	</div>
 </form>
 
-<SuperDebug data={$form} />
+<!-- #region Debug -->
+
+<!-- <SuperDebug data={$form} /> -->
 
 {#if $allErrors.length}
 	<ul>
@@ -42,3 +44,5 @@
 		{/each}
 	</ul>
 {/if}
+
+<!-- #endregion -->
