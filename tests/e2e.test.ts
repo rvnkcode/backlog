@@ -30,6 +30,9 @@ test(`should display some elements`, async ({ page }) => {
 	expect(await checkboxes.nth(0).isChecked()).toBeFalsy();
 	expect(await checkboxes.nth(1).isChecked()).toBeFalsy();
 	expect(await checkboxes.nth(2).isChecked()).toBeTruthy();
+
+	const deleteButtons = page.locator('ul > li > button');
+	expect(await deleteButtons.count()).toEqual(3);
 });
 
 test(`should create a task`, async ({ page }) => {
@@ -92,5 +95,14 @@ test(`should display 403 error page`, async ({ page }) => {
 	await expect(page.getByText('Not found')).toBeVisible();
 });
 
+test(`should delete selected task`, async ({ page }) => {
+	const deleteButtons = page.getByTestId('deleteButton');
+
+	await deleteButtons.nth(1).click();
+	await expect(page.locator('ul > li > label > a')).toHaveText([tasks[0], tasks[2], updateValue]);
+	await expect(page.locator('ul > li > label > a')).not.toHaveText([tasks[1]]);
+});
+
 // TODO:
 // test update task's status
+// separate each page of test

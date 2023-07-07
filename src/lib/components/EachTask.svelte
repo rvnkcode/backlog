@@ -42,7 +42,7 @@
 			{task.title}
 		</a>
 	</label>
-	<button type="button" on:click={async () => await deleteTask(task.id)}
+	<button type="button" on:click={async () => await deleteTask(task.id)} data-testid="deleteButton"
 		><IconTrash stroke={1} /></button
 	>
 </li>
