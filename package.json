@@ -12,7 +12,8 @@
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"seed": "prisma db seed"
+		"seed": "prisma db seed",
+		"start": "yarn prisma migrate deploy && node -r dotenv/config build"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.35.1",
