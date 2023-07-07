@@ -26,7 +26,10 @@
 			bind:value={$form.title}
 			class="grow"
 		/>
-		<button type="submit"><IconPlus stroke={1} /></button>
+		<button type="submit" class="flex">
+			<IconPlus stroke={1} />
+			<span>{isEdit ? `Update` : `Add`} </span>
+		</button>
 	</div>
 </form>
 

@@ -19,13 +19,14 @@
 	$: indeterminate = task.isStarted && !task.isDone ? true : false;
 </script>
 
-<li class="flex justify-between">
-	<label>
+<li class="flex justify-between gap-4">
+	<label class="flex">
 		<input
 			type="checkbox"
 			bind:checked={task.isDone}
 			bind:indeterminate
 			on:click|preventDefault={async () => await updateStatus(task.id)}
+			class="mr-4"
 		/>
 		<a href={`./task/${task.id}`}>
 			{task.title}
