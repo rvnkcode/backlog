@@ -16,6 +16,16 @@
 		invalidateAll();
 	};
 
+	const deleteTask = async (id: number) => {
+		try {
+			await trpc.task.delete.mutate(id);
+		} catch (error) {
+			console.error(error);
+		}
+
+		invalidateAll();
+	};
+
 	$: indeterminate = task.isStarted && !task.isDone ? true : false;
 </script>
 
@@ -32,5 +42,7 @@
 			{task.title}
 		</a>
 	</label>
-	<button type="button"><IconTrash stroke={1} /></button>
+	<button type="button" on:click={async () => await deleteTask(task.id)}
+		><IconTrash stroke={1} /></button
+	>
 </li>
