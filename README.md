@@ -1,5 +1,7 @@
 # Backlog
 
+[![Test Docker Image](https://github.com/rvnkcode/backlog/actions/workflows/test-image.yml/badge.svg)](https://github.com/rvnkcode/backlog/actions/workflows/test-image.yml)
+
 ## Deploy with docker
 
 ### Docker Run
