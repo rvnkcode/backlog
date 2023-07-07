@@ -17,6 +17,7 @@ model Task {
   startedAt   DateTime?
   isDone      Boolean   @default(false)
   completedAt DateTime?
+  isTrashed   Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }

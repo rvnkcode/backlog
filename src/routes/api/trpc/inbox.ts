@@ -9,7 +9,8 @@ export const inboxRouter = router({
 				title: true,
 				isStarted: true,
 				isDone: true
-			}
+			},
+			where: { isTrashed: false }
 		});
 	})
 });
