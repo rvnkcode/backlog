@@ -11,7 +11,16 @@ async function main() {
 		completedAt: null
 	};
 
-	const tasks = [sample];
+	const long: Prisma.TaskCreateInput = {
+		title:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+		isStarted: false,
+		startedAt: null,
+		isDone: false,
+		completedAt: null
+	};
+
+	const tasks = [sample, long];
 
 	for await (const task of tasks) {
 		await prisma.task.upsert({

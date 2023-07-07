@@ -1,8 +1,12 @@
-// Run $ yarn prisma migrate reset before running e2e tests
+// Should run $ yarn prisma migrate reset before running e2e tests
 import { expect, test } from '@playwright/test';
 
 // Global const
-const tasks = [`This is the sample task`, `test`];
+const tasks = [
+	`This is the sample task`,
+	`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+	`test`
+];
 const updateValue = `Completely different value`;
 
 test.beforeEach(async ({ page }) => {
@@ -21,7 +25,7 @@ test(`should display some elements`, async ({ page }) => {
 	await expect(page.getByRole('button', { name: 'Add' })).toBeVisible();
 
 	await expect(page.getByRole('list')).toBeVisible();
-	await expect(page.locator('ul > li > label > a')).toHaveText(tasks[0]);
+	await expect(page.locator('ul > li > label > a')).toHaveText([tasks[0], tasks[1]]);
 
 	const checkbox = page.getByLabel(tasks[0]);
 	await expect(checkbox).toHaveAttribute('type', 'checkbox');
@@ -31,12 +35,12 @@ test(`should display some elements`, async ({ page }) => {
 test(`should create a task`, async ({ page }) => {
 	const input = page.getByPlaceholder('New To-Do');
 
-	await input.fill(tasks[1]);
+	await input.fill(tasks[2]);
 	await input.press('Enter');
 	await expect(input).toBeEmpty();
-	await expect(page.locator('ul > li')).toHaveText(tasks);
+	await expect(page.locator('ul > li > label > a')).toHaveText(tasks);
 
-	const checkbox = page.getByLabel(tasks[1]);
+	const checkbox = page.getByLabel(tasks[2]);
 	await expect(checkbox).toHaveAttribute('type', 'checkbox');
 	expect(await checkbox.isChecked()).toBeFalsy();
 });
@@ -52,9 +56,9 @@ test(`should go to the task detail page`, async ({ page }) => {
 });
 
 test(`should update task's title`, async ({ page }) => {
-	const link = page.getByRole('link', { name: tasks[1] });
+	const link = page.getByRole('link', { name: tasks[2] });
 	await link.click();
-	await expect(page).toHaveURL(/.task\/2/);
+	await expect(page).toHaveURL(/.task\/3/);
 
 	const input = page.getByRole('textbox');
 	await input.fill(updateValue);
@@ -62,11 +66,11 @@ test(`should update task's title`, async ({ page }) => {
 	expect(await input.inputValue()).toStrictEqual(updateValue);
 
 	await page.goBack();
-	await expect(page.locator('ul > li')).toHaveText([tasks[0], updateValue]);
+	await expect(page.locator('ul > li')).toHaveText([tasks[0], tasks[1], updateValue]);
 });
 
 test(`should display updated list`, async ({ page }) => {
-	await expect(page.locator('ul > li')).toHaveText([tasks[0], updateValue]);
+	await expect(page.locator('ul > li')).toHaveText([tasks[0], tasks[1], updateValue]);
 });
 
 test(`should display 403 error page`, async ({ page }) => {
@@ -79,4 +83,4 @@ test(`should display 403 error page`, async ({ page }) => {
 });
 
 // TODO:
-// update task's status
+// test update task's status
