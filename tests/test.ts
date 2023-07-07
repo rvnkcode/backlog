@@ -1,6 +1,14 @@
 import { expect, test } from '@playwright/test';
+import { createMock } from 'zodock';
 
-test('index page has expected h1', async ({ page }) => {
-	await page.goto('/');
-	await expect(page.getByRole('heading', { name: 'Welcome to SvelteKit' })).toBeVisible();
+import { taskSchema } from '../src/lib/zod';
+
+const mockedTask = createMock(taskSchema);
+
+test(`API: should create a task`, async ({ request }) => {
+	const task = await request.post('/?/create_task', {
+		form: { ...mockedTask }
+	});
+
+	expect(task.ok()).toBeTruthy();
 });

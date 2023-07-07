@@ -1,0 +1,8 @@
+main {
+	margin: 0 auto;
+	max-width: 1024px;
+	width: 95%;
+
+	/* debug */
+	/* border: 2px solid red; */
+}

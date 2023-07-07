@@ -1,2 +1,21 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import Form from '$lib/components/Form.svelte';
+	import List from '$lib/components/List.svelte';
+
+	import type { PageServerData } from './$types';
+
+	export let data: PageServerData;
+	$: ({ form, tasks } = data);
+</script>
+
+<svelte:head>
+	<title>Backlog: Inbox</title>
+</svelte:head>
+
+<header>
+	<h2>Inbox</h2>
+</header>
+
+<Form data={form} />
+
+<List {tasks} />

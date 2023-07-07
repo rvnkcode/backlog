@@ -9,3 +9,9 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 *.log
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/tests-examples
+/e2e/example.spec.ts
+prisma/migrations
