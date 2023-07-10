@@ -8,6 +8,8 @@
 	export let data: SuperValidated<TaskSchema>;
 	export let isEdit = false;
 
+	let showMore = false;
+
 	const { form, enhance, allErrors } = superForm(data);
 </script>
 
@@ -25,16 +27,23 @@
 			bind:value={$form.title}
 			class="grow"
 		/>
+		{#if !isEdit}
+			<button type="button" on:click={() => (showMore = !showMore)}
+				><ion-icon name="ellipsis-vertical" /></button
+			>
+		{/if}
 		<button type="submit">
 			<ion-icon name="add" />
-			<span>{isEdit ? `Update` : `Add`} </span>
 		</button>
 	</div>
+	{#if showMore || isEdit}
+		<textarea name="note" placeholder="Notes" bind:value={$form.note} class="w-full" rows="4" />
+	{/if}
 </form>
 
 <!-- #region Debug -->
 
-<!-- <SuperDebug data={$form} /> -->
+<SuperDebug data={$form} />
 
 {#if $allErrors.length}
 	<ul>
