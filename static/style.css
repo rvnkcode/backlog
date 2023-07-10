@@ -6,3 +6,12 @@ main {
 	/* debug */
 	/* border: 2px solid red; */
 }
+
+ion-icon {
+	visibility: inherit;
+	vertical-align: middle;
+}
+
+button > span {
+	vertical-align: middle;
+}

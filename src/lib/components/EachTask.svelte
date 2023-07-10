@@ -2,7 +2,6 @@
 	import { invalidateAll } from '$app/navigation';
 	import type { RouterOutput } from '$lib/server/router';
 	import { trpc } from '$lib/trpcClient';
-	import { IconTrash } from '@tabler/icons-svelte';
 
 	export let task: RouterOutput['inbox']['getInbox'][number];
 
@@ -43,6 +42,6 @@
 		</a>
 	</label>
 	<button type="button" on:click={async () => await deleteTask(task.id)} data-testid="deleteButton"
-		><IconTrash stroke={1} /></button
+		><ion-icon name="trash-outline" /></button
 	>
 </li>
