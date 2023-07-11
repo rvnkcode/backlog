@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 async function main() {
 	const sample: Prisma.TaskCreateInput = {
 		title: inboxTitles[0],
+		note: 'Some note test',
 		isStarted: false,
 		startedAt: null,
 		isDone: false,

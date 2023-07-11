@@ -10,8 +10,10 @@ main {
 ion-icon {
 	visibility: inherit;
 	vertical-align: middle;
+	font-size: larger;
 }
 
+/* In the case of button text with an icon */
 button > span {
 	vertical-align: middle;
 }
