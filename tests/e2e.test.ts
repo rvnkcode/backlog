@@ -131,6 +131,7 @@ test(`should display 403 error page`, async ({ page }) => {
 	await expect(page.getByText('Not found')).toBeVisible();
 });
 
+// Trash feature test
 test(`should delete selected task`, async ({ page }) => {
 	const deleteButtons = page.getByTestId('deleteButton');
 
@@ -144,6 +145,7 @@ test(`should delete selected task`, async ({ page }) => {
 	await expect(page.locator('ul > li > label > a')).not.toHaveText([tasks[1]]);
 });
 
+// Note feature test
 test(`should update task with a note`, async ({ page }) => {
 	await page.goto('/task/6');
 	const noteInput = page.getByRole('textbox').nth(1);
