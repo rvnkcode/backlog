@@ -28,7 +28,7 @@
 			class="grow"
 		/>
 		{#if !isEdit}
-			<button type="button" on:click={() => (showMore = !showMore)}
+			<button type="button" on:click={() => (showMore = !showMore)} data-testid="showMoreButton"
 				><ion-icon name="ellipsis-vertical" /></button
 			>
 		{/if}
