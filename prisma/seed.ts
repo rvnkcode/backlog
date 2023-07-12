@@ -8,6 +8,7 @@ async function main() {
 	const sample: Prisma.TaskCreateInput = {
 		title: inboxTitles[0],
 		note: 'Some note test',
+		urls: 'https://github.com/rvnkcode/backlog,https://hub.docker.com/repository/docker/rvnk/backlog/general',
 		isStarted: false,
 		startedAt: null,
 		isDone: false,
