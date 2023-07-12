@@ -8,7 +8,8 @@ export const inboxRouter = router({
 				id: true,
 				title: true,
 				isStarted: true,
-				isDone: true
+				isDone: true,
+				urls: true
 			},
 			where: { isTrashed: false }
 		});
