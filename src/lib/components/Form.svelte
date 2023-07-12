@@ -4,11 +4,13 @@
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	import type { TaskSchema } from '$lib/zod';
+	import UrlInput from './UrlInput.svelte';
 
 	export let data: SuperValidated<TaskSchema>;
 	export let isEdit = false;
 
 	let showMore = false;
+	let showUrlInput = false;
 
 	const { form, enhance, allErrors } = superForm(data);
 </script>
@@ -25,7 +27,7 @@
 			placeholder="New To-Do"
 			required
 			bind:value={$form.title}
-			class="grow p-1 focus:bg-gray-100 focus:outline-none"
+			class="grow p-1"
 		/>
 		{#if !isEdit}
 			<button
@@ -35,24 +37,37 @@
 				class="px-3"><ion-icon name="ellipsis-vertical" /></button
 			>
 		{/if}
-		<button type="submit" class="px-3 bg-black">
+		<button type="submit" class="px-3 bg-black rounded-r">
 			<ion-icon name="add" class="text-white" />
 		</button>
 	</div>
+
 	{#if showMore || isEdit}
 		<textarea
 			name="note"
 			placeholder="Notes"
 			bind:value={$form.note}
-			class="w-full p-1 mt-1 focus:bg-gray-100 focus:outline-none"
+			class="w-full mt-1 p-1"
 			rows="4"
 		/>
+
+		{#if showUrlInput}
+			<UrlInput />
+		{/if}
+
+		<div class="text-right">
+			<button type="button" on:click={() => (showUrlInput = !showUrlInput)}>
+				<ion-icon name="link" />
+			</button>
+		</div>
 	{/if}
 </form>
 
 <!-- #region Debug -->
 
-<!-- <SuperDebug data={$form} /> -->
+<section class="mt-4">
+	<SuperDebug data={$form} />
+</section>
 
 {#if $allErrors.length}
 	<ul>

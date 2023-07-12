@@ -17,3 +17,16 @@ ion-icon {
 button > span {
 	vertical-align: middle;
 }
+
+input[type='text'],
+input[type='url'],
+textarea {
+	border-radius: 0.25rem;
+}
+
+input[type='text']:focus,
+input[type='url']:focus,
+textarea:focus {
+	background-color: rgb(243, 244, 246);
+	outline: 1px solid blue;
+}
