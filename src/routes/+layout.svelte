@@ -3,7 +3,9 @@
 </script>
 
 <header>
-	<h1>Backlog</h1>
+	<a href="/">
+		<h1>Backlog</h1>
+	</a>
 </header>
 
 <main>
