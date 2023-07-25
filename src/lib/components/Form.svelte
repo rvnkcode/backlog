@@ -10,9 +10,8 @@
 	export let isEdit = false;
 
 	let showMore = false;
-	let showUrlInput = false;
 
-	const { form, enhance, allErrors } = superForm(data);
+	const { form, enhance, allErrors } = superForm(data, { dataType: 'json' });
 </script>
 
 <form method="post" action={isEdit ? '/?/update_task' : '/?/create_task'} use:enhance>
@@ -34,10 +33,10 @@
 				type="button"
 				on:click={() => (showMore = !showMore)}
 				data-testid="showMoreButton"
-				class="px-3"><ion-icon name="ellipsis-vertical" /></button
+				class="px-2"><ion-icon name="ellipsis-vertical" /></button
 			>
 		{/if}
-		<button type="submit" class="px-3 bg-black rounded-r">
+		<button type="submit" class="px-2 bg-black rounded-r">
 			<ion-icon name="add" class="text-white" />
 		</button>
 	</div>
@@ -51,12 +50,19 @@
 			rows="4"
 		/>
 
-		{#if showUrlInput}
-			<UrlInput />
+		{#if $form.urls?.length}
+			{#each $form.urls as _, i}
+				<UrlInput bind:value={$form.urls[i]} bind:urls={$form.urls} />
+			{/each}
 		{/if}
 
 		<div class="text-right">
-			<button type="button" on:click={() => (showUrlInput = !showUrlInput)}>
+			<button
+				type="button"
+				on:click={() => {
+					$form.urls = [...($form.urls ?? []), '']; // Add new URL input
+				}}
+			>
 				<ion-icon name="link" />
 			</button>
 		</div>
@@ -64,7 +70,6 @@
 </form>
 
 <!-- #region Debug -->
-
 <section class="mt-4">
 	<SuperDebug data={$form} />
 </section>
@@ -76,5 +81,4 @@
 		{/each}
 	</ul>
 {/if}
-
 <!-- #endregion -->

@@ -21,8 +21,9 @@ export const actions = {
 			return fail(400, { input: form });
 		}
 
+		const { urls, ...data } = form.data;
 		await prisma.task.create({
-			data: { ...form.data }
+			data: { ...data, urls: urls?.length ? urls.join(',') : undefined }
 		});
 	},
 
@@ -33,7 +34,7 @@ export const actions = {
 			return fail(400, { input: form });
 		}
 
-		const { id, ...others } = form.data;
+		const { id, urls, ...others } = form.data;
 
 		if (id == null) {
 			return fail(403, { input: form });
@@ -41,7 +42,7 @@ export const actions = {
 
 		try {
 			await prisma.task.update({
-				data: others,
+				data: { ...others, urls: urls?.length ? urls?.join(',') : null },
 				where: { id }
 			});
 		} catch (error) {

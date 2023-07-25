@@ -6,9 +6,13 @@ import { idSchema } from '$lib/zod';
 
 export const taskRouter = router({
 	getTaskDetail: publicProcedure.input(idSchema).query(async ({ ctx, input }) => {
-		return await ctx.prisma.task.findUniqueOrThrow({
+		const { urls, ...others } = await ctx.prisma.task.findUniqueOrThrow({
 			where: { id: input }
 		});
+		return {
+			...others,
+			urls: urls?.split(',')
+		};
 	}),
 
 	updateStatus: publicProcedure.input(idSchema).mutation(async ({ ctx, input }) => {

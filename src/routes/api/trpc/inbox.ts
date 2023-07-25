@@ -3,7 +3,7 @@ import { router } from '$lib/server/trpc';
 
 export const inboxRouter = router({
 	getInbox: publicProcedure.query(async ({ ctx }) => {
-		return await ctx.prisma.task.findMany({
+		const result = await ctx.prisma.task.findMany({
 			select: {
 				id: true,
 				title: true,
@@ -12,6 +12,14 @@ export const inboxRouter = router({
 				urls: true
 			},
 			where: { isTrashed: false }
+		});
+
+		return result.map((task) => {
+			const { urls, ...others } = task;
+			return {
+				...others,
+				urls: urls?.split(',')
+			};
 		});
 	})
 });
