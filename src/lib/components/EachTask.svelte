@@ -28,7 +28,7 @@
 	$: indeterminate = task.isStarted && !task.isDone ? true : false;
 </script>
 
-<li class="flex justify-between gap-4">
+<li class="flex justify-between gap-4 group">
 	<label class="flex">
 		<input
 			type="checkbox"
@@ -41,7 +41,10 @@
 			{task.title}
 		</a>
 	</label>
-	<button type="button" on:click={async () => await deleteTask(task.id)} data-testid="deleteButton"
-		><ion-icon name="trash-outline" /></button
+	<button
+		type="button"
+		on:click={async () => await deleteTask(task.id)}
+		data-testid="deleteButton"
+		class="group-hover:visible invisible"><ion-icon name="trash-outline" /></button
 	>
 </li>

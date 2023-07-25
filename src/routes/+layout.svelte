@@ -4,7 +4,7 @@
 
 <header>
 	<a href="/">
-		<h1>Backlog</h1>
+		<h1 class="font-semibold text-lg">Backlog</h1>
 	</a>
 </header>
 

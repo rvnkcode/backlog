@@ -13,7 +13,7 @@
 </svelte:head>
 
 <header>
-	<h2>Inbox</h2>
+	<h2 class="text-lg">Inbox</h2>
 </header>
 
 <Form data={form} />

@@ -19,6 +19,7 @@
 		<input type="hidden" name="id" bind:value={$form.id} />
 	{/if}
 
+	<!-- Title input area -->
 	<div class="flex">
 		<input
 			type="text"
@@ -26,14 +27,15 @@
 			placeholder="New To-Do"
 			required
 			bind:value={$form.title}
-			class="grow p-1"
+			class="grow p-1 h-8 border-neutral-500 border border-r-0 rounded-l placeholder:text-sm"
 		/>
 		{#if !isEdit}
 			<button
 				type="button"
 				on:click={() => (showMore = !showMore)}
 				data-testid="showMoreButton"
-				class="px-2"><ion-icon name="ellipsis-vertical" /></button
+				class="px-2 bg-neutral-200 border-neutral-500 border border-x-0"
+				><ion-icon name="ellipsis-vertical" /></button
 			>
 		{/if}
 		<button type="submit" class="px-2 bg-black rounded-r">
@@ -46,7 +48,7 @@
 			name="note"
 			placeholder="Notes"
 			bind:value={$form.note}
-			class="w-full mt-1 p-1"
+			class="w-full mt-1 p-1 border border-neutral-500 rounded placeholder:text-sm"
 			rows="4"
 		/>
 
@@ -70,7 +72,7 @@
 </form>
 
 <!-- #region Debug -->
-<section class="mt-4">
+<!-- <section class="mt-4">
 	<SuperDebug data={$form} />
 </section>
 
@@ -80,5 +82,5 @@
 			<li><span>{error.path}: {error.messages}</span></li>
 		{/each}
 	</ul>
-{/if}
+{/if} -->
 <!-- #endregion -->

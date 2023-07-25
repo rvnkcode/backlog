@@ -12,6 +12,11 @@
 
 <div class="flex items-center gap-1">
 	<ion-icon name="link" />
-	<input type="URL" placeholder="https://www.example.com" class="grow p-1" bind:value />
+	<input
+		type="URL"
+		placeholder="https://www.example.com"
+		class="grow p-1 h-6 mb-1 last:mb-0 placeholder:text-sm"
+		bind:value
+	/>
 	<button type="button" on:click={remove}><ion-icon name="remove" /></button>
 </div>
