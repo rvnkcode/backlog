@@ -17,3 +17,8 @@ ion-icon {
 button > span {
 	vertical-align: middle;
 }
+
+input:focus,
+textarea:focus {
+	background-color: #f5f5f5;
+}
