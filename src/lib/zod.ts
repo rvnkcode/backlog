@@ -10,7 +10,7 @@ export const taskSchema = z.object({
 		.trim()
 		.nullish()
 		.transform((arg) => {
-			arg === '' ? null : arg;
+			return arg === '' || arg === undefined ? null : arg;
 		}),
 	urls: z.array(z.string().url()).nullish()
 });
