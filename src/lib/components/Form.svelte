@@ -39,7 +39,11 @@
 			>
 		{/if}
 		<button type="submit" class="px-2 bg-black rounded-r">
-			<ion-icon name="add" class="text-white" />
+			{#if isEdit}
+				<span class="text-white">Update</span>
+			{:else}
+				<ion-icon name="add" class="text-white" />
+			{/if}
 		</button>
 	</div>
 
