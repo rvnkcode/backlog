@@ -40,6 +40,15 @@
 		<a href={`./task/${task.id}`}>
 			{task.title}
 		</a>
+		{#if task.urls?.length}
+			<div class="ml-2">
+				{#each task.urls as url}
+					<a href={url} target="_blank">
+						<ion-icon name="link" class="text-sm text-sky-500" />
+					</a>
+				{/each}
+			</div>
+		{/if}
 	</label>
 	<button
 		type="button"
