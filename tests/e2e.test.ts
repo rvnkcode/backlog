@@ -1,7 +1,7 @@
 // Should run $ yarn prisma migrate reset before running e2e tests
 import { expect, test } from '@playwright/test';
 
-import { inboxTitles as tasks, trashTitles as trashes } from '../src/lib/const';
+import { inboxTitles as tasks, trashTitles as trashes } from './const';
 
 // Global const
 const updateValue = `Completely different value`;
@@ -21,7 +21,7 @@ test(`should display some elements`, async ({ page }) => {
 
 	// Form
 	await expect(page.getByPlaceholder('New To-Do')).toBeVisible();
-	await expect(page.getByTestId('showMoreButton')).toBeVisible();
+	await expect(page.getByTestId('show-more-button')).toBeVisible();
 	await expect(page.locator('button[type="submit"]')).toBeVisible();
 
 	// List
@@ -35,8 +35,36 @@ test(`should display some elements`, async ({ page }) => {
 	expect(await checkboxes.nth(1).isChecked()).toBeFalsy();
 	expect(await checkboxes.nth(2).isChecked()).toBeTruthy();
 
-	const deleteButtons = page.getByTestId('deleteButton');
+	const deleteButtons = page.getByTestId('delete-button');
 	expect(await deleteButtons.count()).toEqual(3);
+
+	const urls = page.locator('ul > li > label > div > a');
+	await expect(urls).toHaveCount(2);
+});
+
+test(`should go to the task detail page and display elements`, async ({ page }) => {
+	const links = page.getByRole('link');
+
+	await links.nth(1).click();
+	await expect(page).toHaveURL(/.task\/1/);
+	await expect(page.getByRole('heading', { name: 'Backlog', level: 1 })).toBeVisible();
+
+	const inputs = page.getByRole('textbox');
+	expect(await inputs.nth(0).inputValue()).toStrictEqual(tasks[0]); // Title input
+	expect(await inputs.nth(1).inputValue()).toStrictEqual(`Some note test`); // Note input
+	await expect(page.locator('button[type="submit"]')).toBeVisible();
+
+	// URLs
+	const urls = page.locator('ul > li > div > a');
+	await expect(urls).toHaveCount(2);
+
+	const editButtons = page.getByTestId('edit-button');
+	expect(await editButtons.count()).toEqual(2);
+
+	const removeButtons = page.getByTestId('remove-button');
+	expect(await removeButtons.count()).toEqual(2);
+
+	await expect(page.getByTestId('add-new-url')).toBeVisible();
 });
 
 test(`should create a task`, async ({ page }) => {
@@ -57,39 +85,40 @@ test(`should create a task`, async ({ page }) => {
 	expect(await checkbox.isChecked()).toBeFalsy();
 });
 
-test('should create a task with a note', async ({ page }) => {
+test('should create a task with a note, URL', async ({ page }) => {
 	const titleInput = page.getByPlaceholder('New To-Do');
 	const submitButton = page.locator(`button[type="submit"]`);
-	const showMore = page.getByTestId('showMoreButton');
+	const showMore = page.getByTestId('show-more-button');
 	await showMore.click();
 
 	const noteInput = page.getByPlaceholder('Notes');
 	await expect(noteInput).toBeVisible();
+	const addNewUrl = page.getByTestId('add-new-url');
+	await expect(addNewUrl).toBeVisible();
 
 	await titleInput.fill(tasks[4]);
 	await noteInput.fill(`note test`);
+
+	await addNewUrl.click();
+	const urlInput = page.locator('input[type="url"]');
+	const confirmUrlButton = page.getByTestId('confirm-url-button');
+	await expect(urlInput).toBeVisible();
+	await expect(confirmUrlButton).toBeVisible();
+	await expect(page.getByTestId('remove-button')).toBeVisible();
+	await urlInput.fill('https://www.example.com');
+
 	await submitButton.click();
 
 	await expect(titleInput).toBeEmpty();
 	await expect(noteInput).toBeEmpty();
+	await expect(urlInput).not.toBeVisible();
 	await expect(page.locator('ul > li > label > a')).toHaveText(tasks);
 
 	const checkbox = page.getByLabel(tasks[4]);
 	await expect(checkbox).toHaveAttribute('type', 'checkbox');
 	expect(await checkbox.isChecked()).toBeFalsy();
-});
 
-test(`should go to the task detail page and display elements`, async ({ page }) => {
-	const links = page.getByRole('link');
-
-	await links.nth(0).click();
-	await expect(page).toHaveURL(/.task\/1/);
-	await expect(page.getByRole('heading', { name: 'Backlog', level: 1 })).toBeVisible();
-
-	const inputs = page.getByRole('textbox');
-	expect(await inputs.nth(0).inputValue()).toStrictEqual(tasks[0]); // Title input
-	expect(await inputs.nth(1).inputValue()).toStrictEqual(`Some note test`); // Note input
-	await expect(page.locator('button[type="submit"]')).toBeVisible();
+	await expect(page.locator('ul > li > label > div > a')).toHaveCount(3);
 });
 
 test(`should update task's title`, async ({ page }) => {
@@ -133,7 +162,7 @@ test(`should display 403 error page`, async ({ page }) => {
 
 // Trash feature test
 test(`should delete selected task`, async ({ page }) => {
-	const deleteButtons = page.getByTestId('deleteButton');
+	const deleteButtons = page.getByTestId('delete-button');
 
 	await deleteButtons.nth(1).click();
 	await expect(page.locator('ul > li > label > a')).toHaveText([
