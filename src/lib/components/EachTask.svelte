@@ -2,18 +2,10 @@
 	import { invalidateAll } from '$app/navigation';
 	import type { RouterOutput } from '$lib/server/router';
 	import { trpc } from '$lib/trpcClient';
+	import TaskCheckbox from './atoms/TaskCheckbox.svelte';
+	import TaskTitle from './atoms/TaskTitle.svelte';
 
 	export let task: RouterOutput['inbox']['getInbox'][number];
-
-	const updateStatus = async (id: number) => {
-		try {
-			await trpc.task.updateStatus.mutate(id);
-		} catch (error) {
-			console.error(error);
-		}
-
-		invalidateAll();
-	};
 
 	const deleteTask = async (id: number) => {
 		try {
@@ -29,17 +21,10 @@
 </script>
 
 <li class="flex justify-between gap-4 group">
+	<!-- svelte-ignore a11y-label-has-associated-control -->
 	<label class="flex">
-		<input
-			type="checkbox"
-			bind:checked={task.isDone}
-			bind:indeterminate
-			on:click|preventDefault={async () => await updateStatus(task.id)}
-			class="mr-4"
-		/>
-		<a href={`./task/${task.id}`}>
-			{task.title}
-		</a>
+		<TaskCheckbox id={task.id} isDone={task.isDone} {indeterminate} />
+		<TaskTitle id={task.id} title={task.title} />
 		<div class="ml-2">
 			<!-- TODO: Display note when hover -->
 			{#if task.note}
@@ -56,6 +41,7 @@
 			{/if}
 		</div>
 	</label>
+
 	<button
 		type="button"
 		on:click={async () => await deleteTask(task.id)}
