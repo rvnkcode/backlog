@@ -40,17 +40,21 @@
 		<a href={`./task/${task.id}`}>
 			{task.title}
 		</a>
-		<!-- TODO: Display note icon -->
-		{#if task.urls?.length}
-			<div class="ml-2">
+		<div class="ml-2">
+			<!-- TODO: Display note when hover -->
+			{#if task.note}
+				<ion-icon name="document-outline" class="text-sm" />
+			{/if}
+
+			{#if task.urls?.length}
 				{#each task.urls as url}
-				<!-- TODO: Display URL when hover -->
+					<!-- TODO: Display URL when hover -->
 					<a href={url} target="_blank">
 						<ion-icon name="link" class="text-sm text-sky-500" />
 					</a>
 				{/each}
-			</div>
-		{/if}
+			{/if}
+		</div>
 	</label>
 	<button
 		type="button"

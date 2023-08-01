@@ -9,7 +9,8 @@ export const inboxRouter = router({
 				title: true,
 				isStarted: true,
 				isDone: true,
-				urls: true
+				urls: true,
+				note: true
 			},
 			where: { isTrashed: false }
 		});
