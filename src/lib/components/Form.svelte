@@ -57,9 +57,13 @@
 		/>
 
 		{#if $form.urls?.length}
-			{#each $form.urls as _, i}
-				<UrlInput bind:value={$form.urls[i]} bind:urls={$form.urls} />
-			{/each}
+			<ul >
+				{#each $form.urls as _, i}
+					<li>
+						<UrlInput bind:value={$form.urls[i]} bind:urls={$form.urls} />
+					</li>
+				{/each}
+			</ul>
 		{/if}
 
 		<div class="text-right">
@@ -68,6 +72,7 @@
 				on:click={() => {
 					$form.urls = [...($form.urls ?? []), '']; // Add new URL input
 				}}
+				data-testid="addNewUrl"
 			>
 				<ion-icon name="link" />
 			</button>

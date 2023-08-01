@@ -32,10 +32,10 @@
 		<a href={value} target="_blank" class="text-sm text-sky-600 underline">
 			{value}
 		</a>
-		<button type="button" on:click={() => (editMode = true)}
+		<button type="button" on:click={() => (editMode = true)} data-testid="editButton"
 			><ion-icon name="create-outline" /></button
 		>
 	{/if}
 
-	<button type="button" on:click={remove}><ion-icon name="remove" /></button>
+	<button type="button" on:click={remove} data-testid="removeButton"><ion-icon name="remove" /></button>
 </div>
