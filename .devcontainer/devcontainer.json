@@ -18,7 +18,7 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo chown node node_modules && sudo chown node /memo && npm rm pnpm -g && yarn install",
+	"postCreateCommand": "sudo chown node node_modules && sudo chown node /memo && npm rm pnpm -g && yarn install && npx playwright install && sudo npx playwright install-deps",
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
