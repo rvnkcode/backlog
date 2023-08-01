@@ -20,9 +20,9 @@
 	$: indeterminate = task.isStarted && !task.isDone ? true : false;
 </script>
 
+<!-- TODO: Change order of elements(checkbox and label) -->
 <li class="flex justify-between gap-4 group">
-	<!-- svelte-ignore a11y-label-has-associated-control -->
-	<label class="flex">
+	<label class="flex" for={task.id.toString()}>
 		<TaskCheckbox id={task.id} isDone={task.isDone} {indeterminate} />
 		<TaskTitle id={task.id} title={task.title} />
 		<div class="ml-2">

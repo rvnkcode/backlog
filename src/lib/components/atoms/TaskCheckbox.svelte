@@ -23,4 +23,5 @@
 	bind:indeterminate
 	on:click|preventDefault={async () => await updateStatus(id)}
 	class="mr-4"
+	id={id.toString()}
 />
