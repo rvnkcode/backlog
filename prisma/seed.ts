@@ -1,6 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
 
-import { inboxTitles, trashTitles } from '../src/lib/const';
+import { inboxTitles, trashTitles } from '../tests/const';
 
 const prisma = new PrismaClient();
 
