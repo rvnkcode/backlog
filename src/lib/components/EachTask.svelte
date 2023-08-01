@@ -53,7 +53,7 @@
 	<button
 		type="button"
 		on:click={async () => await deleteTask(task.id)}
-		data-testid="deleteButton"
+		data-testid="delete-button"
 		class="group-hover:visible invisible"><ion-icon name="trash-outline" /></button
 	>
 </li>

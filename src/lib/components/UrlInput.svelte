@@ -27,15 +27,15 @@
 			class="grow p-1 h-6 mb-1 text-sm last:mb-0 placeholder:text-sm"
 			bind:value
 		/>
-		<button type="button" on:click={() => (editMode = false)}><ion-icon name="checkmark" /></button>
+		<button type="button" on:click={() => (editMode = false)} data-testid="confirm-url-button"><ion-icon name="checkmark" /></button>
 	{:else}
 		<a href={value} target="_blank" class="text-sm text-sky-600 underline">
 			{value}
 		</a>
-		<button type="button" on:click={() => (editMode = true)} data-testid="editButton"
+		<button type="button" on:click={() => (editMode = true)} data-testid="edit-button"
 			><ion-icon name="create-outline" /></button
 		>
 	{/if}
 
-	<button type="button" on:click={remove} data-testid="removeButton"><ion-icon name="remove" /></button>
+	<button type="button" on:click={remove} data-testid="remove-button"><ion-icon name="remove" /></button>
 </div>
