@@ -40,9 +40,11 @@
 		<a href={`./task/${task.id}`}>
 			{task.title}
 		</a>
+		<!-- TODO: Display note icon -->
 		{#if task.urls?.length}
 			<div class="ml-2">
 				{#each task.urls as url}
+				<!-- TODO: Display URL when hover -->
 					<a href={url} target="_blank">
 						<ion-icon name="link" class="text-sm text-sky-500" />
 					</a>
