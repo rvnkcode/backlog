@@ -7,7 +7,13 @@
 
 <div class="ml-2">
 	{#if note}
-		<ion-icon name="document-outline" class="text-sm" use:tooltip tooltipText={note} />
+		<ion-icon
+			name="document-outline"
+			class="text-sm"
+			use:tooltip
+			tooltipText={note}
+			data-testid="note-icon"
+		/>
 	{/if}
 
 	{#if urls?.length}
