@@ -13,7 +13,10 @@
 </svelte:head>
 
 <header>
-	<h2 class="text-lg">Inbox</h2>
+	<h2 class="text-lg">
+		<ion-icon name="file-tray-outline" class="text-sm" />
+		<span>Inbox</span>
+	</h2>
 </header>
 
 <Form data={form} />
