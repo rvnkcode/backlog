@@ -15,6 +15,8 @@
 	};
 </script>
 
+<!-- FIXME: Remove class before test -->
+<!-- 	class="group-hover:visible invisible" -->
 <button
 	type="button"
 	on:click={async () => await deleteTask(id)}
