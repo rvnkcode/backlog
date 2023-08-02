@@ -233,7 +233,7 @@ test(`should display 403 error page`, async ({ page }) => {
 test(`should delete selected task`, async ({ page }) => {
 	const deleteButtons = page.getByTestId('delete-button');
 
-	await deleteButtons.nth(1).click({ force: true });
+	await deleteButtons.nth(1).click();
 	await expect(page.locator('ul > li > div > label > a')).toHaveText([
 		tasks[0],
 		tasks[2],
@@ -264,6 +264,9 @@ test(`should empty the note`, async ({ page }) => {
 	await expect(noteInput).toBeEmpty();
 	await page.reload();
 	await expect(noteInput).toBeEmpty();
+
+	await page.goto('/');
+	await expect(page.getByTestId('note-icon')).toHaveCount(1);
 });
 
 test(`should add new note to the exist task`, async ({ page }) => {
@@ -278,6 +281,10 @@ test(`should add new note to the exist task`, async ({ page }) => {
 	expect(await noteInput.inputValue()).toStrictEqual(note);
 	await page.reload();
 	expect(await noteInput.inputValue()).toStrictEqual(note);
+
+	await page.goto('/');
+	await expect(page.getByTestId('note-icon')).toHaveCount(2);
+	await expect(page.getByTestId('note-icon').nth(1)).toBeVisible();
 });
 
 // TODO:
