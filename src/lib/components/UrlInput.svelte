@@ -23,6 +23,7 @@
 	{#if editMode}
 		<input
 			type="URL"
+			required
 			placeholder="https://www.example.com"
 			class="grow p-1 h-6 mb-1 border-neutral-500 border-b text-sm last:mb-0 placeholder:text-sm focus:outline-1 outline-offset-2 outline-blue-200"
 			bind:value

@@ -5,6 +5,10 @@
 
 	import type { TaskSchema } from '$lib/zod';
 	import UrlInput from './UrlInput.svelte';
+	import TitleInput from './atoms/TitleInput.svelte';
+	import NoteInput from './atoms/NoteInput.svelte';
+	import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
+	import TaskSubmitButton from './atoms/TaskSubmitButton.svelte';
 
 	export let data: SuperValidated<TaskSchema>;
 	export let isEdit = false;
@@ -15,46 +19,22 @@
 </script>
 
 <form method="post" action={isEdit ? '/?/update_task' : '/?/create_task'} use:enhance>
+	<!-- ID input -->
 	{#if isEdit}
 		<input type="hidden" name="id" bind:value={$form.id} />
 	{/if}
 
 	<!-- Title input area -->
 	<div class="flex">
-		<input
-			type="text"
-			name="title"
-			placeholder="New To-Do"
-			required
-			bind:value={$form.title}
-			class="grow p-1 h-8 border-neutral-500 border border-r-0 rounded-l placeholder:text-sm focus:outline-1 outline-offset-2 outline-blue-200"
-		/>
+		<TitleInput bind:title={$form.title} />
 		{#if !isEdit}
-			<button
-				type="button"
-				on:click={() => (showMore = !showMore)}
-				data-testid="show-more-button"
-				class="px-2 bg-neutral-200 border-neutral-500 border border-x-0"
-				><ion-icon name="ellipsis-vertical" /></button
-			>
+			<ShowMoreInputsButton bind:showMore />
 		{/if}
-		<button type="submit" class="px-2 bg-black rounded-r">
-			{#if isEdit}
-				<span class="text-white">Update</span>
-			{:else}
-				<ion-icon name="add" class="text-white" />
-			{/if}
-		</button>
+		<TaskSubmitButton {isEdit} />
 	</div>
 
 	{#if showMore || isEdit}
-		<textarea
-			name="note"
-			placeholder="Notes"
-			bind:value={$form.note}
-			class="w-full mt-1 p-1 border border-neutral-500 rounded placeholder:text-sm focus:outline-1 outline-offset-2 outline-blue-200"
-			rows="4"
-		/>
+		<NoteInput bind:note={$form.note} />
 
 		{#if $form.urls?.length}
 			<ul>
@@ -81,7 +61,7 @@
 </form>
 
 <!-- #region Debug -->
-<!-- <section class="mt-4">
+<section class="mt-4">
 	<SuperDebug data={$form} />
 </section>
 
@@ -91,5 +71,5 @@
 			<li><span>{error.path}: {error.messages}</span></li>
 		{/each}
 	</ul>
-{/if} -->
+{/if}
 <!-- #endregion -->
