@@ -39,6 +39,7 @@
 
 		{#if $form.urls?.length}
 			<ul>
+				<!-- https://superforms.rocks/concepts/nested-data#arrays-with-primitive-values -->
 				{#each $form.urls as _, i}
 					<li>
 						<UrlInput bind:value={$form.urls[i]} bind:urls={$form.urls} />
