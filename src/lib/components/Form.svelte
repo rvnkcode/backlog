@@ -63,7 +63,7 @@
 </form>
 
 <!-- #region Debug -->
-<section class="mt-4">
+<!-- <section class="mt-4">
 	<SuperDebug data={$form} />
 </section>
 
@@ -73,5 +73,5 @@
 			<li><span>{error.path}: {error.messages}</span></li>
 		{/each}
 	</ul>
-{/if}
+{/if} -->
 <!-- #endregion -->
