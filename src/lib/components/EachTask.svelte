@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tooltip } from '$lib/actions/tooltip';
 	import type { RouterOutput } from '$lib/server/router';
 	import TaskCheckbox from './atoms/TaskCheckbox.svelte';
 	import TaskDeleteButton from './atoms/TaskDeleteButton.svelte';
@@ -15,16 +16,14 @@
 		<label class="flex" for={task.id.toString()}>
 			<TaskTitle id={task.id} title={task.title} />
 			<div class="ml-2">
-				<!-- TODO: Display note when hover -->
 				{#if task.note}
-					<ion-icon name="document-outline" class="text-sm" />
+					<ion-icon name="document-outline" class="text-sm" use:tooltip tooltipText={task.note} />
 				{/if}
 
 				{#if task.urls?.length}
 					{#each task.urls as url}
-						<!-- TODO: Display URL when hover -->
 						<a href={url} target="_blank">
-							<ion-icon name="link" class="text-sm text-sky-500" />
+							<ion-icon name="link" class="text-sm text-sky-500" use:tooltip tooltipText={url} />
 						</a>
 					{/each}
 				{/if}
