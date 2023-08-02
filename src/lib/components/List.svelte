@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { RouterOutput } from '$lib/server/router';
+
 	import EachTask from './EachTask.svelte';
 
 	export let tasks: RouterOutput['inbox']['getInbox'];

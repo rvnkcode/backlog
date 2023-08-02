@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { RouterOutput } from '$lib/server/router';
+
 	import TaskCheckbox from './atoms/TaskCheckbox.svelte';
 	import TaskDeleteButton from './atoms/TaskDeleteButton.svelte';
 	import TaskInfoIcons from './atoms/TaskInfoIcons.svelte';

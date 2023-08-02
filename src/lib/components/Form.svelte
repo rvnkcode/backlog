@@ -4,11 +4,12 @@
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	import type { TaskSchema } from '$lib/zod';
-	import UrlInput from './UrlInput.svelte';
-	import TitleInput from './atoms/TitleInput.svelte';
+
 	import NoteInput from './atoms/NoteInput.svelte';
 	import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
 	import TaskSubmitButton from './atoms/TaskSubmitButton.svelte';
+	import TitleInput from './atoms/TitleInput.svelte';
+	import UrlInput from './UrlInput.svelte';
 
 	export let data: SuperValidated<TaskSchema>;
 	export let isEdit = false;
