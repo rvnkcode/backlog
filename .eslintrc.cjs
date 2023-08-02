@@ -1,5 +1,6 @@
 module.exports = {
 	root: true,
+	// TODO: https://typescript-eslint.io/linting/configs/#recommended-type-checked
 	extends: [
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',

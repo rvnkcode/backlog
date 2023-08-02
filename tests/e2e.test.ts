@@ -290,3 +290,4 @@ test(`should add new note to the exist task`, async ({ page }) => {
 // TODO:
 // update task with url inputs
 // separate tests
+// https://playwright.dev/docs/best-practices
