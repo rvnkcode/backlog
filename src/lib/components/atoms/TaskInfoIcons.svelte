@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tooltip } from '$lib/actions/tooltip';
 
-	export let note: string | undefined;
+	export let note: string | null;
 	export let urls: string[] | undefined;
 </script>
 
