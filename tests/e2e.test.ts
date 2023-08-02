@@ -288,5 +288,5 @@ test(`should add new note to the exist task`, async ({ page }) => {
 });
 
 // TODO:
-// test update task's status
-// separate each page of test
+// update task with url inputs
+// separate tests
