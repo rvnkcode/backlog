@@ -27,7 +27,7 @@
 			placeholder="New To-Do"
 			required
 			bind:value={$form.title}
-			class="grow p-1 h-8 border-neutral-500 border border-r-0 rounded-l placeholder:text-sm"
+			class="grow p-1 h-8 border-neutral-500 border border-r-0 rounded-l placeholder:text-sm focus:outline-1 outline-offset-2 outline-blue-200"
 		/>
 		{#if !isEdit}
 			<button
@@ -52,12 +52,12 @@
 			name="note"
 			placeholder="Notes"
 			bind:value={$form.note}
-			class="w-full mt-1 p-1 border border-neutral-500 rounded placeholder:text-sm"
+			class="w-full mt-1 p-1 border border-neutral-500 rounded placeholder:text-sm focus:outline-1 outline-offset-2 outline-blue-200"
 			rows="4"
 		/>
 
 		{#if $form.urls?.length}
-			<ul >
+			<ul>
 				{#each $form.urls as _, i}
 					<li>
 						<UrlInput bind:value={$form.urls[i]} bind:urls={$form.urls} />
