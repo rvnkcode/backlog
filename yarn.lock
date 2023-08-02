@@ -3098,8 +3098,3 @@ zod@^3.21.4:
   version "3.21.4"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.21.4.tgz#10882231d992519f0a10b5dd58a38c9dabbb64db"
   integrity sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==
-
-zodock@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/zodock/-/zodock-0.0.12.tgz#968530d52383384f3f4ce12b5479bfacaffd9fa6"
-  integrity sha512-O+dNRQoewBIw17+CAvlq/oy8L+nLp9DvjbTTLWeiIM9UwXeY9n2EUHq4DE3YqydNOvo2RbW6AS+CGr11lFOo4A==
