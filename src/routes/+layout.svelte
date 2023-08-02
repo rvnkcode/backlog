@@ -3,9 +3,9 @@
 </script>
 
 <header>
-	<a href="/">
-		<h1 class="font-semibold text-lg">Backlog</h1>
-	</a>
+	<h1 class="font-semibold text-lg">
+		<a href="/">Backlog</a>
+	</h1>
 </header>
 
 <main>
