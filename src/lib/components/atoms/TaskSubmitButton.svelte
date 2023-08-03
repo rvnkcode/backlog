@@ -6,7 +6,6 @@
 	{#if isEdit}
 		<span class="text-white">Update</span>
 	{:else}
-		<!-- FIXME: Bigger icon -->
-		<ion-icon name="add" class="text-white" aria-label="add new task icon" />
+		<ion-icon name="add" class="text-white text-lg" aria-label="add new task icon" />
 	{/if}
 </button>

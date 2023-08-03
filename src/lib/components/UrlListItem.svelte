@@ -43,8 +43,7 @@
 			class="grow h-6"
 		/>
 		<button type="button" on:click={confirmUrl} aria-label="confirm the url input">
-			<!-- FIXME: Bigger icon -->
-			<ion-icon name="checkmark" aria-label="confirm the url input icon" /></button
+			<ion-icon name="checkmark" class="text-lg" aria-label="confirm the url input icon" /></button
 		>
 	{:else}
 		<!-- TODO: Add link CSS class -->
@@ -57,14 +56,12 @@
 			aria-label="edit url"
 			disabled={value === ''}
 		>
-			<!-- FIXME: Bigger icon -->
-			<ion-icon name="create-outline" aria-label="edit url icon" /></button
+			<ion-icon name="create-outline" class="text-lg" aria-label="edit url icon" /></button
 		>
 	{/if}
 
 	<button type="button" on:click={remove} aria-label="remove url from the list">
-		<!-- FIXME: Bigger icon -->
-		<ion-icon name="remove" aria-label="delete url icon" /></button
+		<ion-icon name="remove" class="text-lg" aria-label="delete url icon" /></button
 	>
 </li>
 {#if errors}

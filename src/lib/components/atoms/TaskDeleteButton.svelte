@@ -21,6 +21,5 @@
 	aria-label="delete task"
 	class="group-hover:visible invisible"
 >
-	<!-- FIXME: Bigger icon -->
-	<ion-icon name="trash-outline" aria-label="trash icon" /></button
+	<ion-icon name="trash-outline" class="text-lg" aria-label="trash icon" /></button
 >

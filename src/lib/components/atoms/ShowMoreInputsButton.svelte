@@ -8,6 +8,5 @@
 	aria-label="show more inputs button"
 	class="px-2 bg-neutral-200 border-neutral-500 border border-x-0"
 >
-	<!-- FIXME: Bigger icon -->
-	<ion-icon name="ellipsis-vertical" aria-label="show more inputs icon" /></button
+	<ion-icon name="ellipsis-vertical" class="text-lg" aria-label="show more inputs icon" /></button
 >
