@@ -13,13 +13,20 @@
 			use:tooltip
 			tooltipText={note}
 			data-testid="note-icon"
+			aria-label="note icon"
 		/>
 	{/if}
 
 	{#if urls?.length}
 		{#each urls as url}
-			<a href={url} target="_blank">
-				<ion-icon name="link" class="text-sm text-sky-500" use:tooltip tooltipText={url} />
+			<a href={url} target="_blank" aria-label={url}>
+				<ion-icon
+					name="link"
+					class="text-sm text-sky-500"
+					use:tooltip
+					tooltipText={url}
+					aria-label="link icon"
+				/>
 			</a>
 		{/each}
 	{/if}

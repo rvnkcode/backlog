@@ -56,7 +56,7 @@
 				}}
 				data-testid="add-new-url"
 			>
-				<ion-icon name="link" />
+				<ion-icon name="link" aria-label="add new link icon" />
 			</button>
 		</div>
 	{/if}

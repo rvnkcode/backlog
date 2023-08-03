@@ -14,7 +14,7 @@
 
 <header>
 	<h2 class="text-lg">
-		<ion-icon name="file-tray-outline" class="text-sm" />
+		<ion-icon name="file-tray-outline" class="text-sm" aria-label="Inbox file tray icon" />
 		<span>Inbox</span>
 	</h2>
 </header>

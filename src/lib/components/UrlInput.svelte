@@ -19,7 +19,7 @@
 </script>
 
 <div class="flex items-center gap-1">
-	<ion-icon name="link" class="text-sm" />
+	<ion-icon name="link" class="text-sm" aria-label="link icon" />
 	{#if editMode}
 		<input
 			type="URL"

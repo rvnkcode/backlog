@@ -2,10 +2,10 @@
 	export let isEdit: boolean;
 </script>
 
-<button type="submit" class="px-2 bg-black rounded-r">
+<button type="submit" aria-label="submit" class="px-2 bg-black rounded-r">
 	{#if isEdit}
 		<span class="text-white">Update</span>
 	{:else}
-		<ion-icon name="add" class="text-white" />
+		<ion-icon name="add" class="text-white" aria-label="add new task icon" />
 	{/if}
 </button>

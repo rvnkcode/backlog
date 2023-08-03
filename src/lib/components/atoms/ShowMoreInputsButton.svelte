@@ -5,7 +5,7 @@
 <button
 	type="button"
 	on:click={() => (showMore = !showMore)}
-	data-testid="show-more-button"
+	aria-label="show more inputs button"
 	class="px-2 bg-neutral-200 border-neutral-500 border border-x-0"
-	><ion-icon name="ellipsis-vertical" /></button
+	><ion-icon name="ellipsis-vertical" aria-label="show more inputs icon" /></button
 >
