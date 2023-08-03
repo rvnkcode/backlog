@@ -3,22 +3,28 @@
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
-	import type { TaskSchema } from '$lib/zod';
+	import { taskSchema, type TaskSchema } from '$lib/zod';
 
 	import NoteInput from './atoms/NoteInput.svelte';
 	import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
 	import TaskSubmitButton from './atoms/TaskSubmitButton.svelte';
 	import TitleInput from './atoms/TitleInput.svelte';
-	import UrlInput from './UrlInput.svelte';
+	import UrlListItem from './UrlListItem.svelte';
 
 	export let data: SuperValidated<TaskSchema>;
 	export let isEdit = false;
 
 	let showMore = false;
 
-	const { form, enhance, allErrors } = superForm(data, { dataType: 'json' });
+	const { form, enhance, errors, allErrors } = superForm(data, {
+		dataType: 'json',
+		customValidity: true,
+		validationMethod: 'onblur',
+		validators: taskSchema
+	});
 </script>
 
+<!-- TODO: Send toast notification after task updated -->
 <form method="post" action={isEdit ? '/?/update_task' : '/?/create_task'} use:enhance>
 	<!-- ID input -->
 	{#if isEdit}
@@ -39,11 +45,8 @@
 
 		{#if $form.urls?.length}
 			<ul>
-				<!-- https://superforms.rocks/concepts/nested-data#arrays-with-primitive-values -->
-				{#each $form.urls as _, i}
-					<li>
-						<UrlInput bind:value={$form.urls[i]} bind:urls={$form.urls} {isEdit} />
-					</li>
+				{#each $form.urls as url, i}
+					<UrlListItem bind:value={url} bind:urls={$form.urls} errors={$errors.urls?.[i]} />
 				{/each}
 			</ul>
 		{/if}
@@ -63,7 +66,8 @@
 </form>
 
 <!-- #region Debug -->
-<!-- <section class="mt-4">
+<!--
+<section class="mt-4">
 	<SuperDebug data={$form} />
 </section>
 
@@ -73,5 +77,6 @@
 			<li><span>{error.path}: {error.messages}</span></li>
 		{/each}
 	</ul>
-{/if} -->
+{/if}
+-->
 <!-- #endregion -->
