@@ -15,11 +15,10 @@
 	};
 </script>
 
-<!-- FIXME: Remove class before test -->
-<!-- 	class="group-hover:visible invisible" -->
 <button
 	type="button"
 	on:click={async () => await deleteTask(id)}
-	data-testid="delete-button"
-	class="group-hover:visible invisible"><ion-icon name="trash-outline" /></button
+	aria-label="delete task"
+	class="group-hover:visible invisible"
+	><ion-icon name="trash-outline" aria-label="trash icon" /></button
 >
