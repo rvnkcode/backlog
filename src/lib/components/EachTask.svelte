@@ -14,7 +14,7 @@
 <li class="group flex justify-between">
 	<div class="flex">
 		<TaskCheckbox id={task.id} isDone={task.isDone} {indeterminate} />
-		<label class="flex" for={task.id.toString()}>
+		<label for={task.id.toString()}>
 			<TaskTitle id={task.id} title={task.title} />
 			<TaskInfoIcons note={task.note} urls={task.urls} />
 		</label>

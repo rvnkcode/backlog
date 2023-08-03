@@ -5,7 +5,7 @@
 	export let urls: string[] | undefined;
 </script>
 
-<div class="ml-2">
+<div class="ml-2 inline">
 	{#if note}
 		<ion-icon
 			name="document-outline"
