@@ -9,7 +9,6 @@
 	{#if note}
 		<ion-icon
 			name="document-outline"
-			class="text-sm"
 			use:tooltip
 			tooltipText={note}
 			data-testid="note-icon"
@@ -22,7 +21,7 @@
 			<a href={url} target="_blank" aria-label={url}>
 				<ion-icon
 					name="link"
-					class="text-sm text-sky-500"
+					class="text-sky-500"
 					use:tooltip
 					tooltipText={url}
 					aria-label="link icon"
