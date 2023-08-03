@@ -3,6 +3,7 @@
 
 	export let value: string;
 	export let urls: string[] | null;
+	export let isEdit: boolean;
 
 	let editMode = false;
 
@@ -28,9 +29,14 @@
 			class="grow p-1 h-6 mb-1 border-neutral-500 border-b text-sm last:mb-0 placeholder:text-sm focus:outline-1 outline-offset-2 outline-blue-200"
 			bind:value
 		/>
-		<button type="button" on:click={() => (editMode = false)} aria-label="confirm the url input"
-			><ion-icon name="checkmark" aria-label="confirm the url input icon" /></button
-		>
+		<!-- FIXME: validate value of input is the URL before confirm the url input and add to the list -->
+		<!-- TODO: If input value isn't URL, send toast notification -->
+		<!-- TODO: If input value isn't URL, display error message under the input -->
+		{#if isEdit}
+			<button type="button" on:click={() => (editMode = false)} aria-label="confirm the url input"
+				><ion-icon name="checkmark" aria-label="confirm the url input icon" /></button
+			>
+		{/if}
 	{:else}
 		<a href={value} target="_blank" class="text-sm text-sky-600 underline">
 			{value}
