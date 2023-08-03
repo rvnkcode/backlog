@@ -28,19 +28,19 @@
 			class="grow p-1 h-6 mb-1 border-neutral-500 border-b text-sm last:mb-0 placeholder:text-sm focus:outline-1 outline-offset-2 outline-blue-200"
 			bind:value
 		/>
-		<button type="button" on:click={() => (editMode = false)} data-testid="confirm-url-button"
-			><ion-icon name="checkmark" /></button
+		<button type="button" on:click={() => (editMode = false)} aria-label="confirm the url input"
+			><ion-icon name="checkmark" aria-label="confirm the url input icon" /></button
 		>
 	{:else}
 		<a href={value} target="_blank" class="text-sm text-sky-600 underline">
 			{value}
 		</a>
-		<button type="button" on:click={() => (editMode = true)} data-testid="edit-button"
-			><ion-icon name="create-outline" /></button
+		<button type="button" on:click={() => (editMode = true)} aria-label="edit url"
+			><ion-icon name="create-outline" aria-label="edit url icon" /></button
 		>
 	{/if}
 
-	<button type="button" on:click={remove} data-testid="remove-button"
-		><ion-icon name="remove" /></button
+	<button type="button" on:click={remove} aria-label="remove url from the list"
+		><ion-icon name="remove" aria-label="delete url icon" /></button
 	>
 </div>
