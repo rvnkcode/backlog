@@ -32,7 +32,7 @@
 </script>
 
 <li class="flex items-center gap-1">
-	<ion-icon name="link" aria-label="link icon" />
+	<ion-icon name="link-outline" aria-label="link icon" />
 	{#if editMode}
 		<input
 			type="URL"
@@ -46,8 +46,7 @@
 			<ion-icon name="checkmark" class="text-lg" aria-label="confirm the url input icon" /></button
 		>
 	{:else}
-		<!-- TODO: Add link CSS class -->
-		<a href={value} target="_blank" class="text-sky-600 underline">
+		<a href={value} target="_blank" class="link">
 			{value}
 		</a>
 		<button
@@ -65,6 +64,5 @@
 	>
 </li>
 {#if errors}
-	<!-- TODO: Add error CSS class -->
-	<span class="italic text-red-500 block">{errors}</span>
+	<span class="error">{errors}</span>
 {/if}

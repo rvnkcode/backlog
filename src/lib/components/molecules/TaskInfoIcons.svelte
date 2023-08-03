@@ -16,13 +16,12 @@
 		/>
 	{/if}
 
-	<!-- TODO: Change color?  -->
 	{#if urls?.length}
 		{#each urls as url}
 			<a href={url} target="_blank" aria-label={url}>
 				<ion-icon
-					name="link"
-					class="text-sky-500"
+					name="link-outline"
+					class="text-sky-600"
 					use:tooltip
 					tooltipText={url}
 					aria-label="link icon"

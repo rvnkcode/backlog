@@ -59,7 +59,7 @@
 				}}
 				aria-label="show new url input"
 			>
-				<ion-icon name="link" class="text-lg" aria-label="add new link icon" />
+				<ion-icon name="link-outline" class="text-lg" aria-label="add new link icon" />
 			</button>
 		</div>
 	{/if}

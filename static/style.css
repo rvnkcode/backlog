@@ -43,3 +43,13 @@ input::placeholder,
 textarea::placeholder {
 	font-size: small;
 }
+
+.error {
+	font-style: italic;
+	color: #ef4444;
+}
+
+.link {
+	color: #0284c7;
+	text-decoration-line: underline;
+}
