@@ -42,10 +42,12 @@
 			aria-invalid={errors?.length ? 'true' : undefined}
 			class="grow h-6"
 		/>
-		<button type="button" on:click={confirmUrl} aria-label="confirm the url input"
-			><ion-icon name="checkmark" aria-label="confirm the url input icon" /></button
+		<button type="button" on:click={confirmUrl} aria-label="confirm the url input">
+			<!-- FIXME: Bigger icon -->
+			<ion-icon name="checkmark" aria-label="confirm the url input icon" /></button
 		>
 	{:else}
+		<!-- TODO: Add link CSS class -->
 		<a href={value} target="_blank" class="text-sky-600 underline">
 			{value}
 		</a>
@@ -53,14 +55,19 @@
 			type="button"
 			on:click={() => (editMode = true)}
 			aria-label="edit url"
-			disabled={value === ''}><ion-icon name="create-outline" aria-label="edit url icon" /></button
+			disabled={value === ''}
+		>
+			<!-- FIXME: Bigger icon -->
+			<ion-icon name="create-outline" aria-label="edit url icon" /></button
 		>
 	{/if}
 
-	<button type="button" on:click={remove} aria-label="remove url from the list"
-		><ion-icon name="remove" aria-label="delete url icon" /></button
+	<button type="button" on:click={remove} aria-label="remove url from the list">
+		<!-- FIXME: Bigger icon -->
+		<ion-icon name="remove" aria-label="delete url icon" /></button
 	>
 </li>
 {#if errors}
+	<!-- TODO: Add error CSS class -->
 	<span class="italic text-red-500 block">{errors}</span>
 {/if}

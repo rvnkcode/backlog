@@ -20,5 +20,7 @@
 	on:click={async () => await deleteTask(id)}
 	aria-label="delete task"
 	class="group-hover:visible invisible"
-	><ion-icon name="trash-outline" aria-label="trash icon" /></button
+>
+	<!-- FIXME: Bigger icon -->
+	<ion-icon name="trash-outline" aria-label="trash icon" /></button
 >

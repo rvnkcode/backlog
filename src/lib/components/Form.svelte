@@ -59,6 +59,7 @@
 				}}
 				aria-label="show new url input"
 			>
+				<!-- FIXME: Bigger icon -->
 				<ion-icon name="link" aria-label="add new link icon" />
 			</button>
 		</div>

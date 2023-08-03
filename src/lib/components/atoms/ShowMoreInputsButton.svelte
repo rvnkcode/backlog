@@ -7,5 +7,7 @@
 	on:click={() => (showMore = !showMore)}
 	aria-label="show more inputs button"
 	class="px-2 bg-neutral-200 border-neutral-500 border border-x-0"
-	><ion-icon name="ellipsis-vertical" aria-label="show more inputs icon" /></button
+>
+	<!-- FIXME: Bigger icon -->
+	<ion-icon name="ellipsis-vertical" aria-label="show more inputs icon" /></button
 >
