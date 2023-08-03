@@ -54,7 +54,7 @@
 				on:click={() => {
 					$form.urls = [...($form.urls ?? []), '']; // Add new URL input
 				}}
-				data-testid="add-new-url"
+				aria-label="show new url input"
 			>
 				<ion-icon name="link" aria-label="add new link icon" />
 			</button>
