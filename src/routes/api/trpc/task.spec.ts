@@ -60,7 +60,7 @@ describe(`tRPC task router unit tests`, () => {
 			expect(isSameDay(updated.startedAt!, today)).toBeTruthy;
 		});
 
-		it(`should update task's statue to be completed`, async () => {
+		it(`should update task's status to be completed`, async () => {
 			const taskGeneralValues = {
 				...generalValues,
 				isStarted: true,
