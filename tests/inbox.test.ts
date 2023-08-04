@@ -137,3 +137,5 @@ test.describe('create task tests', () => {
 		await expect(page.locator('span').filter({ hasText: dummyUrl })).toBeVisible();
 	});
 });
+
+// TODO: Update task's status
