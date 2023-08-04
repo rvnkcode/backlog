@@ -1,5 +1,12 @@
+import type { Prisma } from '@prisma/client';
+
 import { publicProcedure } from '$lib/server/trpc';
 import { router } from '$lib/server/trpc';
+
+const filter: Prisma.TaskWhereInput = {
+	isTrashed: false,
+	isDone: false
+};
 
 export const inboxRouter = router({
 	getInbox: publicProcedure.query(async ({ ctx }) => {
@@ -22,5 +29,15 @@ export const inboxRouter = router({
 				urls: urls?.split(',')
 			};
 		});
+	}),
+
+	getCounts: publicProcedure.query(async ({ ctx }) => {
+		const [inboxCount] = await Promise.all([
+			await ctx.prisma.task.count({
+				where: { ...filter }
+			})
+		]);
+
+		return { inboxCount };
 	})
 });
