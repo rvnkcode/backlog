@@ -3,8 +3,8 @@
 
 	import TaskCheckbox from './atoms/TaskCheckbox.svelte';
 	import TaskDeleteButton from './atoms/TaskDeleteButton.svelte';
-	import TaskInfoIcons from './molecules/TaskInfoIcons.svelte';
 	import TaskTitle from './atoms/TaskTitle.svelte';
+	import TaskInfoIcons from './molecules/TaskInfoIcons.svelte';
 
 	export let task: RouterOutput['inbox']['getInbox'][number];
 

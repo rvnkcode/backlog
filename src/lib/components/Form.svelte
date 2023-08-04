@@ -1,9 +1,10 @@
 <script lang="ts">
+	import toast from 'svelte-french-toast';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
-	import { taskSchema, type TaskSchema } from '$lib/zod';
+	import { type TaskSchema,taskSchema } from '$lib/zod';
 
 	import NoteInput from './atoms/NoteInput.svelte';
 	import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
@@ -20,11 +21,15 @@
 		dataType: 'json',
 		customValidity: true,
 		validationMethod: 'onblur',
-		validators: taskSchema
+		validators: taskSchema,
+		onUpdated({ form }) {
+			if (form.message) {
+				toast.success(form.message);
+			}
+		}
 	});
 </script>
 
-<!-- TODO: Send toast notification after task updated -->
 <form method="post" action={isEdit ? '/?/update_task' : '/?/create_task'} use:enhance>
 	<!-- ID input -->
 	{#if isEdit}
