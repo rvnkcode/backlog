@@ -40,6 +40,9 @@ test(`should display 403 error page`, async ({ page }) => {
 
 test.describe('create task tests', () => {
 	const task = 'test';
+	const note = 'test note';
+	const dummyUrl = 'http://www.example.com';
+	const dummyUrl2 = 'http://www.example2.com';
 
 	test.describe.configure({ mode: 'serial' });
 
@@ -69,7 +72,6 @@ test.describe('create task tests', () => {
 	});
 
 	test('should create a new task with a note', async ({ page }) => {
-		const note = 'test note';
 		const noteInput = page.getByPlaceholder('Notes');
 
 		await noteInput.fill(note);
@@ -84,8 +86,6 @@ test.describe('create task tests', () => {
 	});
 
 	test('should create a new task with links', async ({ page }) => {
-		const dummyUrl = 'http://www.example.com';
-		const dummyUrl2 = 'http://www.example2.com';
 		const showNewUrlInputButton = page.getByLabel('show new url input');
 		const urlInput = page.getByPlaceholder('https://www.example.com');
 
@@ -110,5 +110,30 @@ test.describe('create task tests', () => {
 		await page.getByPlaceholder('New To-Do').click(); // To avoid tooltip intercept pointer events
 		await urlIcon2.hover();
 		await expect(page.locator('span').filter({ hasText: dummyUrl2 })).toBeVisible();
+	});
+
+	test('should create a new task with all additional properties', async ({ page }) => {
+		const noteInput = page.getByPlaceholder('Notes');
+		const showNewUrlInputButton = page.getByLabel('show new url input');
+		const urlInput = page.getByPlaceholder('https://www.example.com');
+
+		await noteInput.fill(note);
+		await showNewUrlInputButton.click();
+		await urlInput.fill(dummyUrl);
+		await page.getByLabel('submit').click();
+
+		await expect(noteInput).toBeEmpty();
+		await expect(page.locator('form').getByRole('list')).not.toBeVisible();
+
+		const noteIcon = page.locator('label').filter({ hasText: task }).getByLabel('note icon');
+		const urlIcon = page.getByLabel(dummyUrl);
+		await expect(noteIcon).toBeVisible();
+		await expect(urlIcon).toBeVisible();
+
+		await noteIcon.hover();
+		await expect(page.locator('span').filter({ hasText: note })).toBeVisible();
+		await page.getByPlaceholder('New To-Do').click(); // To avoid tooltip intercept pointer events
+		await urlIcon.hover();
+		await expect(page.locator('span').filter({ hasText: dummyUrl })).toBeVisible();
 	});
 });
