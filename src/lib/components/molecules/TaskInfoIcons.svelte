@@ -7,13 +7,7 @@
 
 <div class="ml-2 inline">
 	{#if note}
-		<ion-icon
-			name="document-outline"
-			use:tooltip
-			tooltipText={note}
-			data-testid="note-icon"
-			aria-label="note icon"
-		/>
+		<ion-icon name="document-outline" use:tooltip tooltipText={note} aria-label="note icon" />
 	{/if}
 
 	{#if urls?.length}
