@@ -4,8 +4,7 @@
 	export let value: string;
 	export let urls: string[] | null;
 	export let errors: string[] | undefined = undefined;
-
-	let editMode = false;
+	export let urlEditMode = false;
 
 	const remove = () => {
 		urls = urls?.filter((url) => url !== value) ?? null;
@@ -19,21 +18,21 @@
 			return;
 		}
 
-		editMode = false;
+		urlEditMode = false;
 	};
 
 	onMount(() => {
-		value.length === 0 ? (editMode = true) : (editMode = false);
+		value.length === 0 ? (urlEditMode = true) : (urlEditMode = false);
 
 		if (errors) {
-			editMode = true;
+			urlEditMode = true;
 		}
 	});
 </script>
 
 <li class="flex items-center gap-1">
 	<ion-icon name="link-outline" aria-label="link icon" />
-	{#if editMode}
+	{#if urlEditMode}
 		<input
 			type="URL"
 			required
@@ -51,7 +50,7 @@
 		</a>
 		<button
 			type="button"
-			on:click={() => (editMode = true)}
+			on:click={() => (urlEditMode = true)}
 			aria-label="edit url"
 			disabled={value === ''}
 		>

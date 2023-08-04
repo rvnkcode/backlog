@@ -4,7 +4,7 @@
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
-	import { type TaskSchema,taskSchema } from '$lib/zod';
+	import { type TaskSchema, taskSchema } from '$lib/zod';
 
 	import NoteInput from './atoms/NoteInput.svelte';
 	import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
@@ -16,6 +16,7 @@
 	export let isEdit = false;
 
 	let showMore = false;
+	let urlEditMode = false;
 
 	const { form, enhance, errors, allErrors } = superForm(data, {
 		dataType: 'json',
@@ -25,6 +26,7 @@
 		onUpdated({ form }) {
 			if (form.message) {
 				toast.success(form.message);
+				urlEditMode = false;
 			}
 		}
 	});
@@ -51,7 +53,12 @@
 		{#if $form.urls?.length}
 			<ul>
 				{#each $form.urls as url, i}
-					<UrlListItem bind:value={url} bind:urls={$form.urls} errors={$errors.urls?.[i]} />
+					<UrlListItem
+						bind:value={url}
+						bind:urls={$form.urls}
+						errors={$errors.urls?.[i]}
+						bind:urlEditMode
+					/>
 				{/each}
 			</ul>
 		{/if}
