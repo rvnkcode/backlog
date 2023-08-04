@@ -43,16 +43,13 @@ test.describe('create task tests', () => {
 
 	test.describe.configure({ mode: 'serial' });
 
-	test.beforeAll(async ({ page }) => {
+	test.beforeEach(async ({ page }) => {
+		await page.getByPlaceholder('New To-Do').fill(task);
 		await page.getByLabel('show more inputs button').click();
 	});
 
-	test.beforeEach(async ({ page }) => {
-		await page.getByPlaceholder('New To-Do').fill(task);
-	});
-
 	test.afterEach(async ({ page }) => {
-		// Check task added to the list successfully
+		// Check the task added to the list
 		await expect(page.getByPlaceholder('New To-Do')).toBeEmpty();
 		await expect(page.getByRole('link', { name: task })).toBeVisible();
 
@@ -86,5 +83,32 @@ test.describe('create task tests', () => {
 		await expect(page.locator('span').filter({ hasText: note })).toBeVisible();
 	});
 
-	// TODO: should create a new task with links
+	test('should create a new task with links', async ({ page }) => {
+		const dummyUrl = 'http://www.example.com';
+		const dummyUrl2 = 'http://www.example2.com';
+		const showNewUrlInputButton = page.getByLabel('show new url input');
+		const urlInput = page.getByPlaceholder('https://www.example.com');
+
+		await showNewUrlInputButton.click();
+		await urlInput.fill(dummyUrl);
+		await page.getByLabel('confirm the url input', { exact: true }).click();
+		await showNewUrlInputButton.click();
+		await urlInput.fill(dummyUrl2);
+		await page.getByLabel('submit').click();
+
+		// should not show URL input and buttons
+		await expect(page.locator('form').getByRole('list')).not.toBeVisible();
+
+		// URL icons
+		const urlIcon1 = page.getByLabel(dummyUrl);
+		const urlIcon2 = page.getByLabel(dummyUrl2);
+
+		await expect(urlIcon1).toBeVisible();
+		await expect(urlIcon2).toBeVisible();
+		await urlIcon1.hover();
+		await expect(page.locator('span').filter({ hasText: dummyUrl })).toBeVisible();
+		await page.getByPlaceholder('New To-Do').click(); // To avoid tooltip intercept pointer events
+		await urlIcon2.hover();
+		await expect(page.locator('span').filter({ hasText: dummyUrl2 })).toBeVisible();
+	});
 });
