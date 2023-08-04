@@ -15,7 +15,7 @@
 			<a href={url} target="_blank" aria-label={url}>
 				<ion-icon
 					name="link-outline"
-					class="text-sky-600"
+					class="text-indigo-700"
 					use:tooltip
 					tooltipText={url}
 					aria-label="link icon"
