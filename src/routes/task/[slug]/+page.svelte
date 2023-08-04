@@ -7,6 +7,10 @@
 	$: ({ task, form } = data);
 </script>
 
+<svelte:head>
+	<title>Backlog: task/{task.id}</title>
+</svelte:head>
+
 <Form data={form} isEdit={true} />
 
 {@debug task}
