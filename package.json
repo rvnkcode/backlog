@@ -14,7 +14,7 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"seed": "prisma db seed",
-		"start": "yarn prisma migrate deploy && node -r dotenv/config build"
+		"start": "yarn prisma db push --accept-data-loss && node -r dotenv/config build"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.7.3",
