@@ -13,7 +13,7 @@
 	let showMenu = false;
 </script>
 
-<header>
+<header class="px-2">
 	<h1 class="font-semibold text-lg">
 		<button on:click={() => (showMenu = !showMenu)}>
 			<!-- TODO: transition -->
