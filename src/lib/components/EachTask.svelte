@@ -12,7 +12,7 @@
 </script>
 
 <li class="group flex justify-between">
-	<div class="flex">
+	<div class="flex items-center">
 		<TaskCheckbox id={task.id} isDone={task.isDone} {indeterminate} />
 		<label for={task.id.toString()}>
 			<TaskTitle id={task.id} title={task.title} />

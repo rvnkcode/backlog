@@ -22,6 +22,6 @@
 	bind:checked={isDone}
 	bind:indeterminate
 	on:click|preventDefault={async () => await updateStatus(id)}
-	class="mr-4"
+	class="mr-4 form-checkbox"
 	id={id.toString()}
 />
