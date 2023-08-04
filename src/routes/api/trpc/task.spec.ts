@@ -19,9 +19,13 @@ describe(`tRPC task router unit tests`, () => {
 	const caller = appRouter.createCaller({ ...ctx, prisma });
 
 	const today = new Date();
+	// TODO: If a new schema has been added, add also here too
 	const generalValues = {
 		id: 1,
 		title: `Test`,
+		isTrashed: false,
+		note: null,
+		urls: null,
 		createdAt: today,
 		updatedAt: today
 	};
@@ -56,7 +60,7 @@ describe(`tRPC task router unit tests`, () => {
 			expect(isSameDay(updated.startedAt!, today)).toBeTruthy;
 		});
 
-		it(`should update task's statue to be completed`, async () => {
+		it(`should update task's status to be completed`, async () => {
 			const taskGeneralValues = {
 				...generalValues,
 				isStarted: true,

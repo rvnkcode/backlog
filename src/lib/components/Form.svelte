@@ -1,58 +1,87 @@
 <script lang="ts">
+	import toast from 'svelte-french-toast';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
-	import type { TaskSchema } from '$lib/zod';
+	import { type TaskSchema, taskSchema } from '$lib/zod';
+
+	import NoteInput from './atoms/NoteInput.svelte';
+	import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
+	import TaskSubmitButton from './atoms/TaskSubmitButton.svelte';
+	import TitleInput from './atoms/TitleInput.svelte';
+	import UrlListItem from './UrlListItem.svelte';
 
 	export let data: SuperValidated<TaskSchema>;
 	export let isEdit = false;
 
 	let showMore = false;
+	let urlEditMode = false;
 
-	const { form, enhance, allErrors } = superForm(data);
+	const { form, enhance, errors, allErrors } = superForm(data, {
+		dataType: 'json',
+		customValidity: true,
+		validationMethod: 'onblur',
+		validators: taskSchema,
+		onUpdated({ form }) {
+			if (form.message) {
+				toast.success(form.message);
+				urlEditMode = false;
+			}
+		}
+	});
 </script>
 
 <form method="post" action={isEdit ? '/?/update_task' : '/?/create_task'} use:enhance>
+	<!-- ID input -->
 	{#if isEdit}
 		<input type="hidden" name="id" bind:value={$form.id} />
 	{/if}
 
+	<!-- Title input area -->
 	<div class="flex">
-		<input
-			type="text"
-			name="title"
-			placeholder="New To-Do"
-			required
-			bind:value={$form.title}
-			class="grow p-1 focus:bg-gray-100 focus:outline-none"
-		/>
+		<TitleInput bind:title={$form.title} />
 		{#if !isEdit}
+			<ShowMoreInputsButton bind:showMore />
+		{/if}
+		<TaskSubmitButton {isEdit} />
+	</div>
+
+	{#if showMore || isEdit}
+		<NoteInput bind:note={$form.note} />
+
+		{#if $form.urls?.length}
+			<ul>
+				{#each $form.urls as url, i}
+					<UrlListItem
+						bind:value={url}
+						bind:urls={$form.urls}
+						errors={$errors.urls?.[i]}
+						bind:urlEditMode
+					/>
+				{/each}
+			</ul>
+		{/if}
+
+		<div class="text-right">
 			<button
 				type="button"
-				on:click={() => (showMore = !showMore)}
-				data-testid="showMoreButton"
-				class="px-3"><ion-icon name="ellipsis-vertical" /></button
+				on:click={() => {
+					$form.urls = [...($form.urls ?? []), '']; // Add new URL input
+				}}
+				aria-label="show new url input"
 			>
-		{/if}
-		<button type="submit" class="px-3 bg-black">
-			<ion-icon name="add" class="text-white" />
-		</button>
-	</div>
-	{#if showMore || isEdit}
-		<textarea
-			name="note"
-			placeholder="Notes"
-			bind:value={$form.note}
-			class="w-full p-1 mt-1 focus:bg-gray-100 focus:outline-none"
-			rows="4"
-		/>
+				<ion-icon name="link-outline" class="text-lg" aria-label="add new link icon" />
+			</button>
+		</div>
 	{/if}
 </form>
 
 <!-- #region Debug -->
-
-<!-- <SuperDebug data={$form} /> -->
+<!--
+<section class="mt-4">
+	<SuperDebug data={$form} />
+</section>
 
 {#if $allErrors.length}
 	<ul>
@@ -61,5 +90,5 @@
 		{/each}
 	</ul>
 {/if}
-
+-->
 <!-- #endregion -->

@@ -5,7 +5,9 @@ import { appRouter } from '$lib/server/router';
 import { createContext } from '$lib/server/trpc';
 import { taskSchema } from '$lib/zod.js';
 
-export const load = async ({ params }) => {
+import type { PageServerLoad } from './$types';
+
+export const load = (async ({ params }) => {
 	try {
 		const task = appRouter.createCaller(await createContext()).task.getTaskDetail(+params.slug);
 
@@ -14,4 +16,4 @@ export const load = async ({ params }) => {
 		console.error(e);
 		throw error(403, 'Not found');
 	}
-};
+}) satisfies PageServerLoad;

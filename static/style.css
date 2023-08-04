@@ -1,3 +1,7 @@
+body {
+	font-size: 14px;
+}
+
 main {
 	margin: 0 auto;
 	max-width: 1024px;
@@ -10,10 +14,42 @@ main {
 ion-icon {
 	visibility: inherit;
 	vertical-align: middle;
-	font-size: larger;
 }
 
-/* In the case of button text with an icon */
-button > span {
-	vertical-align: middle;
+input,
+textarea {
+	border-radius: 0.25rem;
+	border: solid 1px #737373;
+}
+
+input[type='url'] {
+	border: none;
+	border-bottom: solid 1px #737373;
+	border-radius: 0;
+}
+
+input[type='url']:focus {
+	border-radius: 0.25rem;
+}
+
+input:focus,
+textarea:focus {
+	background-color: #f5f5f5;
+	outline: solid 2px #bfdbfe;
+	outline-offset: 1px;
+}
+
+input::placeholder,
+textarea::placeholder {
+	font-size: small;
+}
+
+.error {
+	font-style: italic;
+	color: #ef4444;
+}
+
+.link {
+	color: #4338ca;
+	text-decoration-line: underline;
 }
