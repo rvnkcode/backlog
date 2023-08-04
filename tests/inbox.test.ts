@@ -1,4 +1,4 @@
-// Should run $ yarn prisma migrate reset before running e2e tests
+// Should run $ yarn prisma migrate reset before running tests
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
