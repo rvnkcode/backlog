@@ -8,16 +8,20 @@ const filter: Prisma.TaskWhereInput = {
 	isDone: false
 };
 
+const selectCondition: Prisma.TaskSelect = {
+	id: true,
+	title: true,
+	isStarted: true,
+	isDone: true,
+	urls: true,
+	note: true
+};
+
 export const listRouter = router({
 	getInbox: publicProcedure.query(async ({ ctx }) => {
 		const result = await ctx.prisma.task.findMany({
 			select: {
-				id: true,
-				title: true,
-				isStarted: true,
-				isDone: true,
-				urls: true,
-				note: true
+				...selectCondition
 			},
 			where: { isTrashed: false, allocatedTo: null }
 		});
@@ -31,13 +35,39 @@ export const listRouter = router({
 		});
 	}),
 
+	getAllocatedTasks: publicProcedure.query(async ({ ctx }) => {
+		const result = await ctx.prisma.task.findMany({
+			select: {
+				...selectCondition,
+				allocatedTo: true
+			},
+			where: {
+				isTrashed: false,
+				NOT: {
+					allocatedTo: null
+				}
+			}
+		});
+
+		return result.map((task) => {
+			const { urls, ...others } = task;
+			return {
+				...others,
+				urls: urls?.split(',')
+			};
+		});
+	}),
+
 	getCounts: publicProcedure.query(async ({ ctx }) => {
-		const [inboxCount] = await Promise.all([
+		const [inboxCount, waitingForCount] = await Promise.all([
 			await ctx.prisma.task.count({
 				where: { ...filter, allocatedTo: null }
+			}),
+			await ctx.prisma.task.count({
+				where: { ...filter, NOT: { allocatedTo: null } }
 			})
 		]);
 
-		return { inboxCount };
+		return { inboxCount, waitingForCount };
 	})
 });
