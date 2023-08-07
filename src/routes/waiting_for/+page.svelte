@@ -13,7 +13,11 @@
 
 <header>
 	<h2 class="text-lg">
-		<ion-icon name="chatbox-ellipses-outline" class="text-sm" aria-label="Inbox file tray icon" />
+		<ion-icon
+			name="chatbox-ellipses-outline"
+			class="text-sm"
+			aria-label="Waiting for page title icon"
+		/>
 		<span>Waiting for</span>
 	</h2>
 </header>
