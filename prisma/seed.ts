@@ -4,24 +4,25 @@ import { inboxTitles, trashTitles } from '../tests/const';
 
 const prisma = new PrismaClient();
 
+const resetStatuses = {
+	isStarted: false,
+	startedAt: null,
+	isDone: false,
+	completedAt: null,
+	isTrashed: false
+};
+
 async function main() {
 	const sample: Prisma.TaskCreateInput = {
 		title: inboxTitles[0],
 		note: 'Some note test',
 		urls: 'https://github.com/rvnkcode/backlog,https://hub.docker.com/repository/docker/rvnk/backlog/general',
-		isStarted: false,
-		startedAt: null,
-		isDone: false,
-		completedAt: null
+		...resetStatuses
 	};
 
 	const long: Prisma.TaskCreateInput = {
 		title: inboxTitles[1],
-		isStarted: false,
-		startedAt: null,
-		isDone: false,
-		completedAt: null,
-		isTrashed: false
+		...resetStatuses
 	};
 
 	const completed: Prisma.TaskCreateInput = {
@@ -36,9 +37,32 @@ async function main() {
 		isTrashed: true
 	};
 
-	const tasks = [sample, long, completed, trashed];
+	const testContact: Prisma.PeopleCreateInput = {
+		name: 'Test',
+		isActive: true
+	};
+
+	const allocated: Prisma.TaskCreateInput = {
+		title: 'Allocated task',
+		...resetStatuses,
+		Contact: {
+			connect: {
+				name: 'Test'
+			}
+		}
+	};
+
+	const tasks = [sample, long, completed, trashed, allocated];
 
 	for await (const task of tasks) {
+		await prisma.people.upsert({
+			where: {
+				id: 1
+			},
+			update: testContact,
+			create: testContact
+		});
+
 		await prisma.task.upsert({
 			where: {
 				id: tasks.indexOf(task) + 1
