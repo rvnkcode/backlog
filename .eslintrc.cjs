@@ -31,6 +31,10 @@ module.exports = {
 	rules: {
 		'simple-import-sort/imports': 'warn',
 		'simple-import-sort/exports': 'warn',
-		'no-console': ['warn', { allow: ['info', 'warn', 'error'] }]
+		'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
+		'@typescript-eslint/no-unused-vars': [
+			'warn',
+			{ varsIgnorePattern: '^_', argsIgnorePattern: '^_', destructuredArrayIgnorePattern: '^_' }
+		]
 	}
 };
