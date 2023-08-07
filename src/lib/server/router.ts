@@ -1,11 +1,11 @@
 import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 
-import { inboxRouter } from '../../routes/api/trpc/inbox';
+import { listRouter } from '../../routes/api/trpc/list';
 import { taskRouter } from '../../routes/api/trpc/task';
 import { router } from './trpc';
 
 export const appRouter = router({
-	inbox: inboxRouter,
+	list: listRouter,
 	task: taskRouter
 });
 

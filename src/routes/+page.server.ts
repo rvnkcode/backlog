@@ -10,7 +10,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 export const load = (async () => ({
 	form: await superValidate(taskSchema),
-	tasks: appRouter.createCaller(await createContext()).inbox.getInbox()
+	tasks: appRouter.createCaller(await createContext()).list.getInbox()
 })) satisfies PageServerLoad;
 
 export const actions = {

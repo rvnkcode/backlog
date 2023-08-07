@@ -8,7 +8,7 @@ const filter: Prisma.TaskWhereInput = {
 	isDone: false
 };
 
-export const inboxRouter = router({
+export const listRouter = router({
 	getInbox: publicProcedure.query(async ({ ctx }) => {
 		const result = await ctx.prisma.task.findMany({
 			select: {
@@ -19,7 +19,7 @@ export const inboxRouter = router({
 				urls: true,
 				note: true
 			},
-			where: { isTrashed: false }
+			where: { isTrashed: false, allocatedTo: null }
 		});
 
 		return result.map((task) => {
@@ -34,7 +34,7 @@ export const inboxRouter = router({
 	getCounts: publicProcedure.query(async ({ ctx }) => {
 		const [inboxCount] = await Promise.all([
 			await ctx.prisma.task.count({
-				where: { ...filter }
+				where: { ...filter, allocatedTo: null }
 			})
 		]);
 
