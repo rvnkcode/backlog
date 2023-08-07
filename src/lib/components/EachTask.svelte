@@ -14,6 +14,7 @@
 <li class="group flex justify-between">
 	<div class="flex items-center">
 		<TaskCheckbox id={task.id} isDone={task.isDone} {indeterminate} />
+		<!-- TODO: Display allocated contact's name -->
 		<label for={task.id.toString()}>
 			<TaskTitle id={task.id} title={task.title} />
 			<TaskInfoIcons note={task.note} urls={task.urls} />

@@ -17,11 +17,15 @@ test('should display some elements', async ({ page }) => {
 	await expect(page.getByRole('heading', { name: 'Backlog', level: 1 })).toBeVisible();
 	await expect(page.getByRole('heading', { name: 'Inbox', level: 2 })).toBeVisible();
 
+	// TODO: should display header's hamburger button
+
 	// Form
 	await expect(page.getByPlaceholder('New To-Do')).toBeVisible();
 	await expect(page.getByRole('button').first()).toBeVisible();
 	await expect(page.getByRole('button').nth(1)).toBeVisible();
 });
+
+// TODO: test: should display side menu navigation
 
 test('should not have any automatically detectable accessibility issues', async ({ page }) => {
 	const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
@@ -120,6 +124,7 @@ test.describe('create task tests', () => {
 		await noteInput.fill(note);
 		await showNewUrlInputButton.click();
 		await urlInput.fill(dummyUrl);
+		// TODO: allocated to input
 		await page.getByLabel('submit').click();
 
 		await expect(noteInput).toBeEmpty();
