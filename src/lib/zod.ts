@@ -12,7 +12,13 @@ export const taskSchema = z.object({
 		.transform((arg) => {
 			return arg === '' || arg === undefined ? null : arg;
 		}),
-	urls: z.array(z.string().url()).nullish()
+	urls: z.array(z.string().url()).nullish(),
+	allocatedTo: z
+		.string()
+		.nullish()
+		.transform((arg) => {
+			return arg === '' || arg === undefined ? null : arg;
+		})
 });
 
 export type TaskSchema = typeof taskSchema;
