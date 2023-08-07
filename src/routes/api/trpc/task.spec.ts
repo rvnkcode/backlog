@@ -27,7 +27,8 @@ describe(`tRPC task router unit tests`, () => {
 		note: null,
 		urls: null,
 		createdAt: today,
-		updatedAt: today
+		updatedAt: today,
+		allocatedTo: null
 	};
 
 	describe(`update task's status`, () => {
