@@ -57,7 +57,7 @@
 
 		{#if isEdit}
 			<ion-icon name="person-add-outline" aria-label="allocated to input icon" />
-			<AllocatedToInput />
+			<AllocatedToInput bind:value={$form.allocatedTo} />
 		{/if}
 
 		<!-- URL list -->
