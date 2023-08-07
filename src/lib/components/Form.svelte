@@ -6,10 +6,12 @@
 
 	import { type TaskSchema, taskSchema } from '$lib/zod';
 
+	import AllocatedToInput from './atoms/AllocatedToInput.svelte';
 	import NoteInput from './atoms/NoteInput.svelte';
 	import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
 	import TaskSubmitButton from './atoms/TaskSubmitButton.svelte';
 	import TitleInput from './atoms/TitleInput.svelte';
+	import AllocatedToFormItem from './molecules/AllocatedToFormItem.svelte';
 	import UrlListItem from './UrlListItem.svelte';
 
 	export let data: SuperValidated<TaskSchema>;
@@ -18,7 +20,7 @@
 	let showMore = false;
 	let isSubmitted = false;
 
-	// If want to debug, add allErrors property
+	// If want to debug, add "allErrors"
 	// const { form, enhance, errors, allErrors } = superForm(data, {
 	const { form, enhance, errors } = superForm(data, {
 		dataType: 'json',
@@ -52,8 +54,14 @@
 	{#if showMore || isEdit}
 		<NoteInput bind:note={$form.note} />
 
+		{#if isEdit}
+			<ion-icon name="person-add-outline" aria-label="allocated to input icon" />
+			<AllocatedToInput />
+		{/if}
+
+		<!-- URL list -->
 		{#if $form.urls?.length}
-			<ul>
+			<ul class="mt-2">
 				{#each $form.urls as url, i}
 					<UrlListItem
 						bind:value={url}
@@ -65,7 +73,11 @@
 			</ul>
 		{/if}
 
-		<div class="text-right">
+		<!-- Some buttons area -->
+		<div class="text-right h-6">
+			<!--  ↑ Same height as input component e.g. Allocated To input -->
+
+			<!-- Show the new URL input -->
 			<button
 				type="button"
 				on:click={() => {
@@ -75,6 +87,11 @@
 			>
 				<ion-icon name="link-outline" class="text-lg" aria-label="add new link icon" />
 			</button>
+
+			<!-- Allocated to -->
+			{#if !isEdit}
+				<AllocatedToFormItem bind:value={$form.allocatedTo} />
+			{/if}
 		</div>
 	{/if}
 </form>
