@@ -21,9 +21,24 @@ export const actions = {
 			return fail(400, { input: form });
 		}
 
-		const { urls, ...data } = form.data;
+		const { urls, allocatedTo, id: _id, ...data } = form.data;
 		await prisma.task.create({
-			data: { ...data, urls: urls?.length ? urls.join(',') : undefined }
+			data: {
+				...data,
+				urls: urls?.length ? urls.join(',') : undefined,
+				Contact: allocatedTo
+					? {
+							connectOrCreate: {
+								where: {
+									name: allocatedTo
+								},
+								create: {
+									name: allocatedTo
+								}
+							}
+					  }
+					: undefined
+			}
 		});
 	},
 
@@ -34,7 +49,7 @@ export const actions = {
 			return fail(400, { input: form });
 		}
 
-		const { id, urls, ...others } = form.data;
+		const { id, urls, allocatedTo, ...others } = form.data;
 
 		if (id == null) {
 			return fail(403, { input: form });
@@ -42,7 +57,22 @@ export const actions = {
 
 		try {
 			await prisma.task.update({
-				data: { ...others, urls: urls?.length ? urls?.join(',') : null },
+				data: {
+					...others,
+					urls: urls?.length ? urls?.join(',') : null,
+					Contact: allocatedTo
+						? {
+								connectOrCreate: {
+									where: {
+										name: allocatedTo
+									},
+									create: {
+										name: allocatedTo
+									}
+								}
+						  }
+						: { disconnect: true }
+				},
 				where: { id }
 			});
 
