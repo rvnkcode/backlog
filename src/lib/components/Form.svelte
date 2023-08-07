@@ -2,13 +2,14 @@
 	import toast from 'svelte-french-toast';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
-	// import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
+	// import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import { type TaskSchema, taskSchema } from '$lib/zod';
 
 	import AllocatedToInput from './atoms/AllocatedToInput.svelte';
 	import NoteInput from './atoms/NoteInput.svelte';
 	import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
+	import ShowUrlInputButton from './atoms/ShowUrlInputButton.svelte';
 	import TaskSubmitButton from './atoms/TaskSubmitButton.svelte';
 	import TitleInput from './atoms/TitleInput.svelte';
 	import AllocatedToFormItem from './molecules/AllocatedToFormItem.svelte';
@@ -76,19 +77,7 @@
 		<!-- Some buttons area -->
 		<div class="text-right h-6">
 			<!--  ↑ Same height as input component e.g. Allocated To input -->
-
-			<!-- Show the new URL input -->
-			<button
-				type="button"
-				on:click={() => {
-					$form.urls = [...($form.urls ?? []), '']; // Add new URL input
-				}}
-				aria-label="show new url input"
-			>
-				<ion-icon name="link-outline" class="text-lg" aria-label="add new link icon" />
-			</button>
-
-			<!-- Allocated to -->
+			<ShowUrlInputButton bind:urls={$form.urls} />
 			{#if !isEdit}
 				<AllocatedToFormItem bind:value={$form.allocatedTo} />
 			{/if}
