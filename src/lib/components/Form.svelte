@@ -2,7 +2,7 @@
 	import toast from 'svelte-french-toast';
 	import type { SuperValidated } from 'sveltekit-superforms';
 	import { superForm } from 'sveltekit-superforms/client';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	// import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	import { type TaskSchema, taskSchema } from '$lib/zod';
 
@@ -16,9 +16,11 @@
 	export let isEdit = false;
 
 	let showMore = false;
-	let urlEditMode = false;
+	let isSubmitted = false;
 
-	const { form, enhance, errors, allErrors } = superForm(data, {
+	// If want to debug, add allErrors property
+	// const { form, enhance, errors, allErrors } = superForm(data, {
+	const { form, enhance, errors } = superForm(data, {
 		dataType: 'json',
 		customValidity: true,
 		validationMethod: 'onblur',
@@ -26,7 +28,7 @@
 		onUpdated({ form }) {
 			if (form.message) {
 				toast.success(form.message);
-				urlEditMode = false;
+				isSubmitted = true;
 			}
 		}
 	});
@@ -57,7 +59,7 @@
 						bind:value={url}
 						bind:urls={$form.urls}
 						errors={$errors.urls?.[i]}
-						bind:urlEditMode
+						bind:isSubmitted
 					/>
 				{/each}
 			</ul>

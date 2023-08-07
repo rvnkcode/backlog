@@ -4,7 +4,14 @@
 	export let value: string;
 	export let urls: string[] | null;
 	export let errors: string[] | undefined = undefined;
-	export let urlEditMode = false;
+	export let isSubmitted = false;
+
+	let urlEditMode = false;
+
+	$: if (isSubmitted) {
+		urlEditMode = false;
+		isSubmitted = false; // If you don't turn back the status here, it will reflect only the first time and not after that.
+	}
 
 	const remove = () => {
 		urls = urls?.filter((url) => url !== value) ?? null;
