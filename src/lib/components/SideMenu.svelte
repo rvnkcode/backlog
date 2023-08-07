@@ -3,7 +3,7 @@
 
 	import SideMenuItem from './molecules/SideMenuItem.svelte';
 
-	export let count: RouterOutput['inbox']['getCounts'];
+	export let count: RouterOutput['list']['getCounts'];
 </script>
 
 <nav class="w-full">

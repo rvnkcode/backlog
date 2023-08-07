@@ -6,7 +6,7 @@
 	import TaskTitle from './atoms/TaskTitle.svelte';
 	import TaskInfoIcons from './molecules/TaskInfoIcons.svelte';
 
-	export let task: RouterOutput['inbox']['getInbox'][number];
+	export let task: RouterOutput['list']['getInbox'][number];
 
 	$: indeterminate = task.isStarted && !task.isDone ? true : false;
 </script>

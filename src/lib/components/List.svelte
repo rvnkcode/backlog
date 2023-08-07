@@ -3,7 +3,7 @@
 
 	import EachTask from './EachTask.svelte';
 
-	export let tasks: RouterOutput['inbox']['getInbox'];
+	export let tasks: RouterOutput['list']['getInbox'];
 </script>
 
 {#if tasks.length}
