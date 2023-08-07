@@ -34,7 +34,7 @@
 			<SideMenu {count} />
 		</aside>
 	{/if}
-	<section class="my-0 mx-auto">
+	<section class="my-0 mx-auto w-full">
 		<main>
 			<slot />
 		</main>
