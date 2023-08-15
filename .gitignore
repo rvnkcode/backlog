@@ -15,3 +15,4 @@ vite.config.ts.timestamp-*
 /tests-examples
 /e2e/example.spec.ts
 prisma/migrations
+*.db
