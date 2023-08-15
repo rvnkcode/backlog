@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:/memo/backlog.db"
+  url      = "file:../backlog.db"
 }
 
 model Task {
