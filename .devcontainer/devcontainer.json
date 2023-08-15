@@ -1,66 +1,66 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
 {
-	"name": "Backlog",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	// "image": "mcr.microsoft.com/devcontainers/typescript-node:0-20-bullseye"
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
-		"ghcr.io/devcontainers/features/git:1": {
-			"version": "latest"
-		},
-		"ghcr.io/warrenbuckley/codespace-features/sqlite:latest": {}
-	},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "sudo chown node node_modules && sudo chown node /memo && npm rm pnpm -g && yarn install && npx playwright install && sudo npx playwright install-deps",
-	// Configure tool-specific properties.
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"VisualStudioExptTeam.vscodeintellicode",
-				"streetsidesoftware.code-spell-checker",
-				"Gruntfuggly.todo-tree",
-				"eamodio.gitlens",
-				"ms-azuretools.vscode-docker",
-				"redhat.vscode-yaml",
-				"dbaeumer.vscode-eslint",
-				"esbenp.prettier-vscode",
-				"Prisma.prisma",
-				"svelte.svelte-vscode",
-				"github.vscode-github-actions",
-				"ZixuanChen.vitest-explorer",
-				"ms-playwright.playwright",
-				"WallabyJs.console-ninja",
-				"bradlc.vscode-tailwindcss"
-			],
-			"settings": {
-				"editor.formatOnPaste": true,
-				"editor.formatOnSave": true,
-				"editor.linkedEditing": true,
-				"typescript.updateImportsOnFileMove.enabled": "always",
-				"explorer.fileNesting.enabled": true,
-				"explorer.fileNesting.patterns": {
-					"*.ts": "${capture}.js, ${capture}.*.ts",
-					"*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-					"*.jsx": "${capture}.js",
-					"*.tsx": "${capture}.ts",
-					"tsconfig.json": "tsconfig.*.json",
-					"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml"
-				}
-			}
-		}
-	},
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	"remoteUser": "node",
-	// https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-a-targeted-named-volume
-	"mounts": [
-		"source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
-		"source=log-memo,target=/memo,type=volume"
-	]
+  "name": "Backlog",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  // "image": "mcr.microsoft.com/devcontainers/typescript-node:0-20-bullseye"
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/warrenbuckley/codespace-features/sqlite:latest": {}
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "sudo chown node node_modules && sudo chown node /memo && npm rm pnpm -g && yarn install && npx playwright install && sudo npx playwright install-deps",
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "VisualStudioExptTeam.vscodeintellicode",
+        "streetsidesoftware.code-spell-checker",
+        "Gruntfuggly.todo-tree",
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "Prisma.prisma",
+        "svelte.svelte-vscode",
+        "github.vscode-github-actions",
+        "ZixuanChen.vitest-explorer",
+        "ms-playwright.playwright",
+        "WallabyJs.console-ninja",
+        "bradlc.vscode-tailwindcss"
+      ],
+      "settings": {
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true,
+        "editor.linkedEditing": true,
+        "typescript.updateImportsOnFileMove.enabled": "always",
+        "explorer.fileNesting.enabled": true,
+        "explorer.fileNesting.patterns": {
+          "*.ts": "${capture}.js, ${capture}.*.ts",
+          "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+          "*.jsx": "${capture}.js",
+          "*.tsx": "${capture}.ts",
+          "tsconfig.json": "tsconfig.*.json",
+          "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml"
+        }
+      }
+    }
+  },
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "node",
+  // https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-a-targeted-named-volume
+  "mounts": [
+    "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+    "source=log-memo,target=/memo,type=volume"
+  ]
 }

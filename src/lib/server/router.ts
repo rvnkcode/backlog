@@ -6,9 +6,9 @@ import { taskRouter } from '../../routes/api/trpc/task';
 import { router } from './trpc';
 
 export const appRouter = router({
-	list: listRouter,
-	task: taskRouter,
-	contact: contactRouter
+  list: listRouter,
+  task: taskRouter,
+  contact: contactRouter
 });
 
 export type AppRouter = typeof appRouter;

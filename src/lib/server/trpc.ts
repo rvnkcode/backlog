@@ -4,13 +4,13 @@ import superjson from 'superjson';
 import prisma from './prisma';
 
 export const createContext = async () => {
-	return { prisma };
+  return { prisma };
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;
 
 const t = initTRPC.context<Context>().create({
-	transformer: superjson
+  transformer: superjson
 });
 
 export const router = t.router;

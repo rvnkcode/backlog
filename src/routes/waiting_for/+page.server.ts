@@ -7,6 +7,6 @@ import { taskSchema } from '$lib/zod';
 import type { PageServerLoad } from '../$types';
 
 export const load = (async () => ({
-	form: await superValidate(taskSchema),
-	tasks: appRouter.createCaller(await createContext()).list.getAllocatedTasks()
+  form: await superValidate(taskSchema),
+  tasks: appRouter.createCaller(await createContext()).list.getAllocatedTasks()
 })) satisfies PageServerLoad;

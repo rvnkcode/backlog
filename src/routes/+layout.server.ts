@@ -4,5 +4,5 @@ import { createContext } from '$lib/server/trpc';
 import type { LayoutServerLoad } from './$types';
 
 export const load = (async () => ({
-	count: appRouter.createCaller(await createContext()).list.getCounts()
+  count: appRouter.createCaller(await createContext()).list.getCounts()
 })) satisfies LayoutServerLoad;
