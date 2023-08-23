@@ -15,9 +15,8 @@ test('should have a title', async ({ page }) => {
 test('should display some elements', async ({ page }) => {
   // Headings
   await expect(page.getByRole('heading', { name: 'Backlog', level: 1 })).toBeVisible();
+  await expect(page.getByLabel('Toggle hamburger menu button')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Inbox', level: 2 })).toBeVisible();
-
-  // TODO: should display header's hamburger button
 
   // Form
   await expect(page.getByPlaceholder('New To-Do')).toBeVisible();
@@ -25,19 +24,18 @@ test('should display some elements', async ({ page }) => {
   await expect(page.getByRole('button').nth(1)).toBeVisible();
 });
 
-// TODO: test: should display side menu navigation
-
 test('should not have any automatically detectable accessibility issues', async ({ page }) => {
   const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+  await page.getByLabel('Toggle hamburger menu button').click();
   expect(accessibilityScanResults.violations).toEqual([]);
 });
 
 test(`should display 403 error page`, async ({ page }) => {
   await page.goto('/task/test');
   await expect(page.getByRole('heading', { name: 'Backlog', level: 1 })).toBeVisible();
+  await expect(page.getByLabel('Toggle hamburger menu button')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Inbox', level: 2 })).not.toBeVisible();
   await expect(page.getByRole('textbox')).not.toBeVisible();
-  await expect(page.getByRole('button')).not.toBeVisible();
   await expect(page.getByText('403')).toBeVisible();
   await expect(page.getByText('Not found')).toBeVisible();
 });
@@ -142,5 +140,3 @@ test.describe('create task tests', () => {
     await expect(page.locator('span').filter({ hasText: dummyUrl })).toBeVisible();
   });
 });
-
-// TODO: Update task's status
