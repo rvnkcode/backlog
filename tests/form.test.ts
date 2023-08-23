@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 test('should display additional inputs', async ({ page }) => {
   await expect(page.getByPlaceholder('Notes')).toBeVisible();
   await expect(page.getByLabel('show new url input')).toBeVisible();
-  // TODO: await expect(allocatedToInput).toBeVisible()
+  await expect(page.getByLabel('show allocated to input', { exact: true })).toBeVisible();
 });
 
 test.describe('URL input tests', () => {
@@ -114,4 +114,12 @@ test.describe('URL input tests', () => {
   });
 });
 
-// TODO: allocated to input test
+test.describe('Allocated to input test', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.getByLabel('show allocated to input', { exact: true }).click();
+  });
+
+  test('Should display allocated to input', async ({ page }) => {
+    await expect(page.getByPlaceholder('Allocated to...')).toBeVisible();
+  });
+});
