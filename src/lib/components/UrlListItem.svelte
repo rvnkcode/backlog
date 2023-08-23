@@ -37,7 +37,7 @@
   });
 </script>
 
-<li class="flex items-center gap-1">
+<li class="flex items-center gap-1 mb-2">
   <ion-icon name="link-outline" aria-label="link icon" />
   {#if urlEditMode}
     <input
