@@ -4,6 +4,6 @@
   export let isDone: boolean;
 </script>
 
-<a href={`./task/${id}`} class={isDone ? "text-neutral-400" : ""}>
+<a href={`./task/${id}`} class={isDone ? 'text-neutral-400' : ''}>
   {title}
 </a>
