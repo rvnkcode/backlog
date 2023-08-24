@@ -18,6 +18,7 @@
       name="chatbox-ellipses-outline"
       class="text-sm"
       aria-label="Waiting for page title icon"
+      role="img"
     />
     <span>Waiting for</span>
   </h2>

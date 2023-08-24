@@ -18,9 +18,9 @@
     <button on:click={() => (showMenu = !showMenu)} aria-label="Toggle hamburger menu button">
       <!-- TODO: transition -->
       {#if showMenu}
-        <ion-icon name="close-outline" aria-label="Close side menu icon" />
+        <ion-icon name="close-outline" aria-label="Close side menu icon" role="img" />
       {:else}
-        <ion-icon name="menu-outline" aria-label="Open side menu icon" />
+        <ion-icon name="menu-outline" aria-label="Open side menu icon" role="img" />
       {/if}
     </button>
 
