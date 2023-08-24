@@ -37,7 +37,7 @@
   });
 </script>
 
-<li class="flex items-center gap-1 mb-2">
+<li class="flex items-center gap-1">
   <ion-icon name="link-outline" aria-label="link icon" />
   {#if urlEditMode}
     <input
@@ -46,7 +46,7 @@
       placeholder="https://www.example.com"
       bind:value
       aria-invalid={errors?.length ? 'true' : undefined}
-      class="grow h-6"
+      class="grow h-6 last:mb-2"
     />
     <button type="button" on:click={confirmUrl} aria-label="confirm the url input">
       <ion-icon name="checkmark" class="text-lg" aria-label="confirm the url input icon" /></button
