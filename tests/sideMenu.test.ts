@@ -9,23 +9,22 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Should toggle side menu', async ({ page }) => {
-  await expect(page.getByRole('link', { name: 'inbox menu file tray icon Inbox 2' })).toBeVisible();
-  await expect(
-    page.getByRole('link', { name: 'waiting for menu icon Waiting for 1' })
-  ).toBeVisible();
+  await expect(page.locator('aside > nav > ul > li').filter({ hasText: 'inbox' })).toBeVisible();
+  await expect(page.locator('aside > nav > ul > li').filter({ hasText: 'waiting' })).toBeVisible();
   // TODO: Add navigation menus
 
   await page.getByLabel('Toggle hamburger menu button').click();
+
   await expect(
-    page.getByRole('link', { name: 'inbox menu file tray icon Inbox 2' })
+    page.locator('aside > nav > ul > li').filter({ hasText: 'inbox' })
   ).not.toBeVisible();
   await expect(
-    page.getByRole('link', { name: 'waiting for menu icon Waiting for 1' })
+    page.locator('aside > nav > ul > li').filter({ hasText: 'waiting' })
   ).not.toBeVisible();
 });
 
 test('Should navigate to the waiting for page', async ({ page }) => {
-  await page.getByRole('link', { name: 'waiting for menu icon Waiting for 1' }).click();
+  await page.locator('aside > nav > ul > li').filter({ hasText: 'waiting' }).click();
 
   await expect(page).toHaveTitle('Backlog: Waiting for');
   await expect(
@@ -37,6 +36,6 @@ test('Should navigate to the waiting for page', async ({ page }) => {
 });
 
 test('Should navigate to the inbox page', async ({ page }) => {
-  await page.getByRole('link', { name: 'inbox menu file tray icon Inbox 2' }).click();
+  await page.locator('aside > nav > ul > li').filter({ hasText: 'inbox' }).click();
   await expect(page.getByRole('heading', { name: 'Inbox', level: 2 })).toBeVisible();
 });

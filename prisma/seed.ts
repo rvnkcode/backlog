@@ -38,7 +38,7 @@ async function main() {
   };
 
   const testContact: Prisma.PeopleCreateInput = {
-    name: 'Test',
+    name: 'Name',
     isActive: true
   };
 
@@ -47,7 +47,7 @@ async function main() {
     ...resetStatuses,
     Contact: {
       connect: {
-        name: 'Test'
+        name: 'Name'
       }
     }
   };

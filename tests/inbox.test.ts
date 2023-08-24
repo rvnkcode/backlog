@@ -41,7 +41,7 @@ test(`should display 403 error page`, async ({ page }) => {
 });
 
 test.describe('create task tests', () => {
-  const task = 'test';
+  const task = 'Inbox task test';
   const note = 'test note';
   const dummyUrl = 'http://www.example.com';
   const dummyUrl2 = 'http://www.example2.com';
@@ -138,5 +138,22 @@ test.describe('create task tests', () => {
     await page.getByPlaceholder('New To-Do').click(); // To avoid tooltip intercept pointer events
     await urlIcon.hover();
     await expect(page.locator('span').filter({ hasText: dummyUrl })).toBeVisible();
+  });
+
+  test('should not display create task with allocated to property', async ({ page }) => {
+    const contact = 'contact';
+
+    await page.getByLabel('show allocated to input', { exact: true }).click();
+    await page.getByPlaceholder('Allocated to...').fill(contact);
+    await page.getByLabel('submit').click();
+
+    await expect(page.getByPlaceholder('Allocated to...')).toBeEmpty();
+
+    await expect(page.getByRole('link', { name: task })).not.toBeVisible();
+
+    // Go to the waiting for page
+    await page.getByLabel('Toggle hamburger menu button').click();
+    await page.locator('aside > nav > ul > li').filter({ hasText: 'waiting' }).click();
+    await expect(page.getByText(contact)).toBeVisible();
   });
 });
