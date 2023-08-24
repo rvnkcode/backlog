@@ -189,4 +189,10 @@ test.describe('Run in sequence', () => {
     await page.goto('/');
     await expect(page.getByLabel(dummyUrl)).toBeVisible();
   });
+
+  // TODO: write tests about allocated to input
+  // goto task/5 and should display allocated to name
+  // update allocated to name -> go back and check the list that name has changed
+  // delete allocated to name -> waiting for no -> in inbox should display item
+  // update allocated to name -> inbox no -> waiting for yes
 });

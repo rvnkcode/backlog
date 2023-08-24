@@ -122,7 +122,6 @@ test.describe('create task tests', () => {
     await noteInput.fill(note);
     await showNewUrlInputButton.click();
     await urlInput.fill(dummyUrl);
-    // TODO: allocated to input
     await page.getByLabel('submit').click();
 
     await expect(noteInput).toBeEmpty();
