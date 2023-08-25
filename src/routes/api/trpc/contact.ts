@@ -15,5 +15,22 @@ export const contactRouter = router({
     });
 
     return result.map((item) => item.name);
+  }),
+
+  getAllContacts: publicProcedure.query(async ({ ctx }) => {
+    const [activated, disabled] = await Promise.all([
+      await ctx.prisma.people.findMany({
+        where: {
+          isActive: true
+        }
+      }),
+      await ctx.prisma.people.findMany({
+        where: {
+          isActive: false
+        }
+      })
+    ]);
+
+    return { activated, disabled };
   })
 });

@@ -13,7 +13,7 @@
   let showMenu = false;
 </script>
 
-<header class="px-2">
+<header class="px-2 flex justify-between items-center">
   <h1 class="font-semibold text-lg">
     <button on:click={() => (showMenu = !showMenu)} aria-label="Toggle hamburger menu button">
       <!-- TODO: transition -->
@@ -26,6 +26,10 @@
 
     <a href="/">Backlog</a>
   </h1>
+
+  <a href="/settings">
+    <ion-icon name="settings" class="text-lg" />
+  </a>
 </header>
 
 <section class="flex">
