@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:/memo/backlog.db"
+  url      = "file:../backlog.db"
 }
 
 model Task {
@@ -15,6 +15,8 @@ model Task {
   title       String
   note        String?
   urls        String?
+  Contact     People?   @relation(fields: [allocatedTo], references: [name])
+  allocatedTo String?
   isStarted   Boolean   @default(false)
   startedAt   DateTime?
   isDone      Boolean   @default(false)
@@ -22,4 +24,12 @@ model Task {
   isTrashed   Boolean   @default(false)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+}
+
+model People {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  isActive Boolean @default(true)
+
+  Task Task[]
 }

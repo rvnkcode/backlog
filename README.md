@@ -12,6 +12,12 @@ Currently under development.
 docker run -d --name backlog -p 3000:3000 -v ~/.backlog/:/memo rvnk/backlog:test
 ```
 
+### Build image locally
+
+```bash
+docker image build -t rvnk/backlog:test .
+```
+
 <!-- ### Docker Run
 
 ```bash

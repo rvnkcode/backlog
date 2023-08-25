@@ -1,12 +1,14 @@
 import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 
-import { inboxRouter } from '../../routes/api/trpc/inbox';
+import { contactRouter } from '../../routes/api/trpc/contact';
+import { listRouter } from '../../routes/api/trpc/list';
 import { taskRouter } from '../../routes/api/trpc/task';
 import { router } from './trpc';
 
 export const appRouter = router({
-	inbox: inboxRouter,
-	task: taskRouter
+  list: listRouter,
+  task: taskRouter,
+  contact: contactRouter
 });
 
 export type AppRouter = typeof appRouter;

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-	input,
-	textarea {
-		@apply p-1;
-	}
+  input,
+  textarea {
+    @apply p-1;
+  }
 }

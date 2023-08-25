@@ -6,10 +6,10 @@ import type { AppRouter } from './server/router';
 export const trpcApiBase = '/api/trpc';
 
 export const trpc = createTRPCProxyClient<AppRouter>({
-	links: [
-		httpBatchLink({
-			url: trpcApiBase
-		})
-	],
-	transformer: superjson
+  links: [
+    httpBatchLink({
+      url: trpcApiBase
+    })
+  ],
+  transformer: superjson
 });
