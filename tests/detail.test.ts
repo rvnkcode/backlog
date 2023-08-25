@@ -189,10 +189,57 @@ test.describe('Run in sequence', () => {
     await page.goto('/');
     await expect(page.getByLabel(dummyUrl)).toBeVisible();
   });
+});
 
-  // TODO: write tests about allocated to input
-  // goto task/5 and should display allocated to name
-  // update allocated to name -> go back and check the list that name has changed
-  // delete allocated to name -> waiting for no -> in inbox should display item
-  // update allocated to name -> inbox no -> waiting for yes
+test.describe('Allocated to test', () => {
+  test.describe.configure({ mode: 'serial' });
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/task/5');
+  });
+
+  test('should display allocated to input and value', async ({ page }) => {
+    expect(await page.getByPlaceholder('Allocated to...').inputValue()).toStrictEqual('Name');
+  });
+
+  test('should update name of allocator', async ({ page }) => {
+    const value = 'New name of contact';
+    const allocatedToInput = page.getByPlaceholder('Allocated to...');
+
+    await allocatedToInput.fill(value);
+    await page.getByLabel('submit').click();
+
+    await expect(page.getByText('The task was updated successfully!')).toBeVisible(); // Toast notification
+    expect(await allocatedToInput.inputValue()).toStrictEqual(value);
+    await page.goto('/waiting_for');
+    await expect(page.getByText(value)).toBeVisible();
+  });
+
+  test('should remove name of allocator', async ({ page }) => {
+    const allocatedToInput = page.getByPlaceholder('Allocated to...');
+    await allocatedToInput.clear();
+    await page.getByLabel('submit').click();
+
+    await expect(page.getByText('The task was updated successfully!')).toBeVisible(); // Toast notification
+    expect(await allocatedToInput.inputValue()).toEqual('');
+    await page.goto('/waiting_for');
+    await expect(page.getByRole('link', { name: 'Allocated task' })).not.toBeVisible();
+    await page.goto('/');
+    await expect(page.getByRole('link', { name: 'Allocated task' })).toBeVisible();
+  });
+
+  test('should allocate task to someone and display it waiting for page', async ({ page }) => {
+    const allocatedToInput = page.getByPlaceholder('Allocated to...');
+    const value = 'Name';
+    await allocatedToInput.fill(value);
+    await page.getByLabel('submit').click();
+
+    await expect(page.getByText('The task was updated successfully!')).toBeVisible(); // Toast notification
+    expect(await allocatedToInput.inputValue()).toStrictEqual(value);
+    await page.goto('/');
+    await expect(page.getByRole('link', { name: 'Allocated task' })).not.toBeVisible();
+    await page.goto('/waiting_for');
+    await expect(page.getByRole('link', { name: 'Allocated task' })).toBeVisible();
+    await expect(page.getByText(value)).toBeVisible();
+  });
 });
