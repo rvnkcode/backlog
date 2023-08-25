@@ -2,6 +2,7 @@
   "name": "backlog",
   "version": "0.0.1",
   "private": true,
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "vite dev",
     "build": "svelte-kit sync && vite build",
