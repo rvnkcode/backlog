@@ -1,3 +1,4 @@
+<!-- TODO: Move file to under the molecules -->
 <script lang="ts">
   import type { RouterOutput } from '$lib/server/router';
 
