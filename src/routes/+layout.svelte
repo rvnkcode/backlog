@@ -27,8 +27,9 @@
     <a href="/">Backlog</a>
   </h1>
 
-  <a href="/settings">
-    <ion-icon name="settings" class="text-lg" />
+  <a href="/settings" class="flex items-center">
+    <ion-icon name="settings" class="mr-1" />
+    <span class="text-base">Settings</span>
   </a>
 </header>
 
