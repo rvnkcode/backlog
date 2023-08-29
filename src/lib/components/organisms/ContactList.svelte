@@ -25,7 +25,7 @@
 </script>
 
 <!-- TODO: Adjust border color? -->
-<ul class="border rounded w-full p-1">
+<div class="border rounded w-full p-1">
   <header class="flex justify-between mb-2 border-b pb-1">
     <label>
       <input
@@ -38,7 +38,9 @@
     <span>{listTitle}</span>
   </header>
 
-  {#each list as c}
-    <EachContact contact={c} />
-  {/each}
-</ul>
+  <ul>
+    {#each list as c}
+      <EachContact contact={c} />
+    {/each}
+  </ul>
+</div>
