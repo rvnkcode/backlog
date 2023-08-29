@@ -9,6 +9,7 @@
 
   let isEdit = false;
   let open = false; // Open or close modal
+  let value = contact.name; // input value
 
   $: checked = $selectedContacts.has(contact.id);
 
@@ -24,6 +25,11 @@
     $selectedContacts.clear();
     isEdit = false;
   };
+
+  const handleCancel = () => {
+    isEdit = false;
+    value = contact.name;
+  };
 </script>
 
 <li class="flex justify-between itmes-center">
@@ -37,7 +43,7 @@
       }}
     />
     {#if isEdit}
-      <input type="text" placeholder="Enter the new name" bind:value={contact.name} class="h-5" />
+      <input type="text" placeholder="Enter the new name" bind:value class="h-5" />
     {:else}
       <span>{contact.name}</span>
     {/if}
@@ -46,15 +52,10 @@
   <!-- Buttons -->
   <div>
     {#if isEdit}
-      <button type="button" on:click={async () => await updateName(contact.id, contact.name)}
+      <button type="button" on:click={async () => await updateName(contact.id, value)}
         >Confirm</button
       >
-      <button
-        type="button"
-        on:click={() => {
-          isEdit = false;
-        }}>Cancel</button
-      >
+      <button type="button" on:click={handleCancel}>Cancel</button>
     {:else}
       <button
         type="button"
