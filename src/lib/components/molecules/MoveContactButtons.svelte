@@ -30,6 +30,7 @@
     type="button"
     aria-label="Activate contact"
     on:click={async () => await activateContacts($selectedContacts)}
+    class="general"
   >
     <ion-icon name="chevron-forward" />
   </button>
@@ -37,15 +38,8 @@
     type="button"
     aria-label="Deactivate contact"
     on:click={async () => await deactivateContacts($selectedContacts)}
+    class="general"
   >
     <ion-icon name="chevron-back" />
   </button>
 </div>
-
-<style>
-  button {
-    border-radius: 0.25rem;
-    padding: 0.25rem;
-    border: solid 1px #737373;
-  }
-</style>

@@ -47,7 +47,7 @@
   <div>
     {#if isEdit}
       <button type="button" on:click={async () => await updateName(contact.id, contact.name)}
-        >confirm</button
+        >Confirm</button
       >
       <button
         type="button"
@@ -62,7 +62,6 @@
           isEdit = true;
         }}>Rename</button
       >
-      <!-- TODO: Display delete confirm modal -->
       <button
         type="button"
         on:click={() => {

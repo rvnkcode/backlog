@@ -1,4 +1,3 @@
-<!-- TODO: Close modal when press ESC key -->
 <script lang="ts">
   import { invalidateAll } from '$app/navigation';
   import { trpc } from '$lib/trpcClient';
@@ -11,13 +10,19 @@
     invalidateAll();
     open = false;
   };
+
+  const closeModal = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      open = false;
+    } else return;
+  };
 </script>
 
 {#if open}
   <div class="backdrop" />
 {/if}
 
-<dialog {open}>
+<dialog {open} class="p-4">
   <header>Remove contact</header>
 
   <p>
@@ -28,10 +33,13 @@
   <footer class="text-right">
     <button
       type="button"
+      class="general mr-1"
       on:click={() => {
         open = false;
       }}>Cancel</button
     >
-    <button type="button" on:click={deleteContact}>OK</button>
+    <button type="button" class="general primary" on:click={deleteContact}>OK</button>
   </footer>
 </dialog>
+
+<svelte:window on:keydown={closeModal} />

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { People } from '@prisma/client';
-  import EachContact from './molecules/EachContact.svelte';
+  import EachContact from '../molecules/EachContact.svelte';
   import { selectedContacts } from '$lib/stores';
   import { invalidateAll } from '$app/navigation';
 
@@ -24,7 +24,7 @@
   };
 </script>
 
-<!-- TODO: Adjust border color -->
+<!-- TODO: Adjust border color? -->
 <ul class="border rounded w-full p-1">
   <header class="flex justify-between mb-2 border-b pb-1">
     <label>

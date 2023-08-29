@@ -3,7 +3,7 @@
 
   import { Toaster } from 'svelte-french-toast';
 
-  import SideMenu from '$lib/components/SideMenu.svelte';
+  import SideMenu from '$lib/components/organisms/SideMenu.svelte';
 
   import type { LayoutServerData } from './$types';
 
@@ -28,7 +28,7 @@
   </h1>
 
   <a href="/settings" class="flex items-center">
-    <ion-icon name="settings" class="mr-1" />
+    <ion-icon name="settings" class="mr-1" aria-label="Settings icon" role="img" />
     <span class="text-base">Settings</span>
   </a>
 </header>

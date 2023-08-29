@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Form from '$lib/components/Form.svelte';
-  import List from '$lib/components/List.svelte';
+  import Form from '$lib/components/organisms/Form.svelte';
+  import List from '$lib/components/organisms/List.svelte';
 
   import type { PageServerData } from './$types';
 
@@ -14,7 +14,12 @@
 
 <header>
   <h2 class="text-lg">
-    <ion-icon name="file-tray-outline" class="text-sm" aria-label="Inbox file tray icon" />
+    <ion-icon
+      name="file-tray-outline"
+      class="text-sm"
+      aria-label="Inbox file tray icon"
+      role="img"
+    />
     <span>Inbox</span>
   </h2>
 </header>

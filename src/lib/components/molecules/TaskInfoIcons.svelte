@@ -7,7 +7,13 @@
 
 <div class="ml-2 inline">
   {#if note}
-    <ion-icon name="document-outline" use:tooltip tooltipText={note} aria-label="note icon" />
+    <ion-icon
+      name="document-outline"
+      use:tooltip
+      tooltipText={note}
+      aria-label="note icon"
+      role="img"
+    />
   {/if}
 
   {#if urls?.length}
@@ -19,6 +25,7 @@
           use:tooltip
           tooltipText={url}
           aria-label="link icon"
+          role="img"
         />
       </a>
     {/each}

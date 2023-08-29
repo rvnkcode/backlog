@@ -6,14 +6,14 @@
   // import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
   import { type TaskSchema, taskSchema } from '$lib/zod';
 
-  import AllocatedToInput from './atoms/AllocatedToInput.svelte';
-  import NoteInput from './atoms/NoteInput.svelte';
-  import ShowMoreInputsButton from './atoms/ShowMoreInputsButton.svelte';
-  import ShowUrlInputButton from './atoms/ShowUrlInputButton.svelte';
-  import TaskSubmitButton from './atoms/TaskSubmitButton.svelte';
-  import TitleInput from './atoms/TitleInput.svelte';
-  import AllocatedToFormItem from './molecules/AllocatedToFormItem.svelte';
-  import UrlListItem from './UrlListItem.svelte';
+  import AllocatedToInput from '../atoms/AllocatedToInput.svelte';
+  import NoteInput from '../atoms/NoteInput.svelte';
+  import ShowMoreInputsButton from '../atoms/ShowMoreInputsButton.svelte';
+  import ShowUrlInputButton from '../atoms/ShowUrlInputButton.svelte';
+  import TaskSubmitButton from '../atoms/TaskSubmitButton.svelte';
+  import TitleInput from '../atoms/TitleInput.svelte';
+  import AllocatedToFormItem from '../molecules/AllocatedToFormItem.svelte';
+  import UrlListItem from '../molecules/UrlListItem.svelte';
 
   export let data: SuperValidated<TaskSchema>;
   export let isEdit = false;
@@ -56,7 +56,7 @@
     <NoteInput bind:note={$form.note} />
 
     {#if isEdit}
-      <ion-icon name="person-add-outline" aria-label="allocated to input icon" />
+      <ion-icon name="person-add-outline" aria-label="allocated to input icon" role="img" />
       <AllocatedToInput bind:value={$form.allocatedTo} />
     {/if}
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Form from '$lib/components/Form.svelte';
-  import List from '$lib/components/List.svelte';
+  import Form from '$lib/components/organisms/Form.svelte';
+  import List from '$lib/components/organisms/List.svelte';
 
   import type { PageServerData } from './$types';
 
