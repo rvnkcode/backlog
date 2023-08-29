@@ -14,7 +14,7 @@
 
 <header>
   <h2 class="text-lg">
-    <ion-icon name="settings-outline" class="text-sm" />
+    <ion-icon name="settings-outline" class="text-sm" role="img" aria-label="Settings icon" />
     <span>Settings</span>
   </h2>
   <!-- TODO: Making tab? -->

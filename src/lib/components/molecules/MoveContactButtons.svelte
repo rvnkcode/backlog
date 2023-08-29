@@ -32,7 +32,7 @@
     on:click={async () => await activateContacts($selectedContacts)}
     class="general"
   >
-    <ion-icon name="chevron-forward" />
+    <ion-icon name="chevron-forward" role="img" aria-label="Activate contact icon" />
   </button>
   <button
     type="button"
@@ -40,6 +40,6 @@
     on:click={async () => await deactivateContacts($selectedContacts)}
     class="general"
   >
-    <ion-icon name="chevron-back" />
+    <ion-icon name="chevron-back" role="img" aria-label="Deactivate contact icon" />
   </button>
 </div>
