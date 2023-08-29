@@ -30,7 +30,7 @@ test('should display some elements', async ({ page }) => {
 test('should go to the settings page', async ({ page }) => {
   await page.getByRole('link', { name: 'Settings icon Settings' }).click();
   await expect(page).toHaveURL('settings');
-})
+});
 
 test('should not have any automatically detectable accessibility issues', async ({ page }) => {
   const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
