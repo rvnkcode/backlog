@@ -73,3 +73,15 @@ div.backdrop {
   height: 100vh;
   z-index: 1;
 }
+
+button.general {
+  border: 1px solid #737373;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+
+button.primary {
+  border: none;
+  background-color: #469ffc;
+  color: white;
+}
