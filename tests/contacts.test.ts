@@ -33,12 +33,14 @@ test('should not have any automatically detectable accessibility issues', async 
 
 test.describe('contact CRUD test on the activated list', () => {
   test.describe.configure({ mode: 'serial' });
+  const task = 'Fight for the dragon!';
+  const contact = 'janny';
+  const updatedContact = 'Jake';
 
   test('should display new contact on the activated contacts list', async ({ page }) => {
-    const contact = 'new contact';
     // Add new task with new contact
     await page.getByRole('link', { name: 'Backlog' }).click();
-    await page.getByPlaceholder('New To-Do').fill('allocated test for contact');
+    await page.getByPlaceholder('New To-Do').fill(task);
     await page.getByLabel('show more inputs button').click();
     await page.getByLabel('show allocated to input', { exact: true }).click();
     await page.getByPlaceholder('Allocated to...').fill(contact);
@@ -54,17 +56,80 @@ test.describe('contact CRUD test on the activated list', () => {
         .getByText(contact)
     ).toBeVisible();
     await expect(
-      page.locator('li').filter({ hasText: 'new contact' }).getByRole('button', { name: 'Rename' })
+      page.locator('li').filter({ hasText: contact }).getByRole('button', { name: 'Rename' })
     ).toBeVisible();
     await expect(
-      page.locator('li').filter({ hasText: 'new contact' }).getByRole('button', { name: 'Remove' })
+      page.locator('li').filter({ hasText: contact }).getByRole('button', { name: 'Remove' })
     ).toBeVisible();
   });
 
+  test('should not update the contact', async ({ page }) => {
+    await page
+      .locator('li')
+      .filter({ hasText: contact })
+      .getByRole('button', { name: 'Rename' })
+      .click();
+    expect(await page.getByPlaceholder('Enter the new name').inputValue()).toStrictEqual(contact);
+
+    await page.getByPlaceholder('Enter the new name').fill(updatedContact);
+    await page.getByRole('button', { name: 'Cancel' }).click();
+
+    await expect(page.getByText(updatedContact)).not.toBeVisible();
+
+    await page
+      .locator('li')
+      .filter({ hasText: contact })
+      .getByRole('button', { name: 'Rename' })
+      .click();
+    expect(await page.getByPlaceholder('Enter the new name').inputValue()).toStrictEqual(contact);
+  });
+
+  test('should rename the contact', async ({ page }) => {
+    await page
+      .locator('li')
+      .filter({ hasText: contact })
+      .getByRole('button', { name: 'Rename' })
+      .click();
+    await page.getByPlaceholder('Enter the new name').fill(updatedContact);
+    await page.getByRole('button', { name: 'Confirm' }).click();
+
+    await expect(page.getByText(contact)).not.toBeVisible();
+    await expect(page.getByText(updatedContact)).toBeVisible();
+
+    await page
+      .locator('li')
+      .filter({ hasText: updatedContact })
+      .getByRole('button', { name: 'Rename' })
+      .click();
+    expect(await page.getByPlaceholder('Enter the new name').inputValue()).toStrictEqual(
+      updatedContact
+    );
+  });
+
+  test('should display renamed contact on the waiting for page', async ({ page }) => {
+    await page.goto('/waiting_for');
+    expect(
+      await page.locator('li').filter({ hasText: task }).locator('span').innerText()
+    ).toStrictEqual(updatedContact);
+  });
+
+  test('should not delete the contact', async ({ page }) => {
+    await page.locator('li').filter({ hasText: updatedContact }).getByRole('button', { name: 'Remove' }).click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+
+    await page.getByRole('button', { name: 'Cancel' }).click();
+    await expect(page.getByRole('dialog')).not.toBeVisible();
+    await expect(page.getByText(updatedContact)).toBeVisible();
+  })
+
+  test('should remove contact', async ({ page }) => {
+    await page.locator('li').filter({ hasText: updatedContact }).getByRole('button', { name: 'Remove' }).click();
+
+    await page.getByRole('button', { name: 'OK' }).click();
+    // TODO
+  });
+
   // TODO:
-  // should rename contact
-  // should waiting for list updated with renamed contact
-  // should remove activate contact
   // should task moved to the inbox list
 });
 
