@@ -203,7 +203,7 @@ test.describe('Allocated to test', () => {
   });
 
   test('should update name of allocator', async ({ page }) => {
-    const value = 'New name of contact';
+    const value = 'farenheart';
     const allocatedToInput = page.getByPlaceholder('Allocated to...');
 
     await allocatedToInput.fill(value);

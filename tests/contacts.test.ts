@@ -250,7 +250,7 @@ test.describe('contact CRUD tests', () => {
 
     await expect(page.getByPlaceholder('Allocated to...')).toHaveAttribute('list', 'names');
     await expect(page.locator('datalist')).toHaveAttribute('id', 'names');
-    await expect(page.locator('datalist option')).not.toHaveText('Name');
+    await expect(page.locator('datalist option')).not.toHaveText(['Name']);
   });
 
   test('should activate a single contact', async ({ page }) => {
