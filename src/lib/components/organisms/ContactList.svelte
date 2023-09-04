@@ -25,9 +25,7 @@
   };
 
   onMount(() => {
-    console.log('mounted')
     $selectedContacts.clear();
-    console.log($selectedContacts)
   })
 </script>
 
