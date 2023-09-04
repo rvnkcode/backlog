@@ -38,7 +38,7 @@
 </script>
 
 <li class="flex items-center gap-1">
-  <ion-icon name="link-outline" aria-label="link icon" />
+  <ion-icon name="link-outline" aria-label="link icon" role="img" />
   {#if urlEditMode}
     <input
       type="URL"
@@ -61,12 +61,17 @@
       aria-label="edit url"
       disabled={value === ''}
     >
-      <ion-icon name="create-outline" class="text-lg" aria-label="edit url icon" /></button
+      <ion-icon
+        name="create-outline"
+        class="text-lg"
+        aria-label="edit url icon"
+        role="img"
+      /></button
     >
   {/if}
 
   <button type="button" on:click={remove} aria-label="remove url from the list">
-    <ion-icon name="remove" class="text-lg" aria-label="delete url icon" /></button
+    <ion-icon name="remove" class="text-lg" aria-label="delete url icon" role="img" /></button
   >
 </li>
 {#if errors}

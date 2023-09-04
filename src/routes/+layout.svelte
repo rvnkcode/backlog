@@ -3,7 +3,7 @@
 
   import { Toaster } from 'svelte-french-toast';
 
-  import SideMenu from '$lib/components/SideMenu.svelte';
+  import SideMenu from '$lib/components/organisms/SideMenu.svelte';
 
   import type { LayoutServerData } from './$types';
 
@@ -13,7 +13,7 @@
   let showMenu = false;
 </script>
 
-<header class="px-2">
+<header class="px-2 flex justify-between items-center">
   <h1 class="font-semibold text-lg">
     <button on:click={() => (showMenu = !showMenu)} aria-label="Toggle hamburger menu button">
       <!-- TODO: transition -->
@@ -26,6 +26,11 @@
 
     <a href="/">Backlog</a>
   </h1>
+
+  <a href="/settings" class="flex items-center">
+    <ion-icon name="settings" class="mr-1" aria-label="Settings icon" role="img" />
+    <span class="text-base">Settings</span>
+  </a>
 </header>
 
 <section class="flex">

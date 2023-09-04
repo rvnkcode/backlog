@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { RouterOutput } from '$lib/server/router';
 
-  import SideMenuItem from './molecules/SideMenuItem.svelte';
+  import SideMenuItem from '../molecules/SideMenuItem.svelte';
 
   export let count: RouterOutput['list']['getCounts'];
 </script>

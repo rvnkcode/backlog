@@ -14,7 +14,12 @@
 </script>
 
 <button type="button" aria-label="show allocated to input" on:click={handleClick}>
-  <ion-icon name="person-add-outline" class="text-lg" aria-label="show allocated to input icon" />
+  <ion-icon
+    name="person-add-outline"
+    class="text-lg"
+    aria-label="show allocated to input icon"
+    role="img"
+  />
 </button>
 
 {#if showAllocatedTo}
