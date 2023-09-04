@@ -31,7 +31,7 @@ test('should not have any automatically detectable accessibility issues', async 
   expect(accessibilityScanResults.violations).toEqual([]);
 });
 
-test.describe('contact CRUD test on the activated list', () => {
+test.describe('contact CRUD tests', () => {
   test.describe.configure({ mode: 'serial' });
   const task = 'Fight for the dragon!';
   const contact = 'janny';
@@ -114,35 +114,182 @@ test.describe('contact CRUD test on the activated list', () => {
   });
 
   test('should not delete the contact', async ({ page }) => {
-    await page.locator('li').filter({ hasText: updatedContact }).getByRole('button', { name: 'Remove' }).click();
+    await page
+      .locator('li')
+      .filter({ hasText: updatedContact })
+      .getByRole('button', { name: 'Remove' })
+      .click();
     await expect(page.getByRole('dialog')).toBeVisible();
 
     await page.getByRole('button', { name: 'Cancel' }).click();
     await expect(page.getByRole('dialog')).not.toBeVisible();
     await expect(page.getByText(updatedContact)).toBeVisible();
-  })
-
-  test('should remove contact', async ({ page }) => {
-    await page.locator('li').filter({ hasText: updatedContact }).getByRole('button', { name: 'Remove' }).click();
-
-    await page.getByRole('button', { name: 'OK' }).click();
-    // TODO
   });
 
-  // TODO:
-  // should task moved to the inbox list
+  test('should select all activated contacts', async ({ page }) => {
+    await page
+      .locator('header')
+      .filter({ hasText: 'Select all Activated' })
+      .getByLabel('Select all')
+      .check();
+
+    expect(
+      await page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Activated' })
+        .locator('ul > li > label > input[type="checkbox"]')
+        .count()
+    ).toEqual(
+      await page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Activated' })
+        .locator('ul > li > label > input[type="checkbox"]:checked')
+        .count()
+    );
+  });
+
+  test('should deactivate all contacts', async ({ page }) => {
+    await page
+      .locator('header')
+      .filter({ hasText: 'Select all Activated' })
+      .getByLabel('Select all')
+      .check();
+    await page.getByLabel('Deactivate contact', { exact: true }).click();
+
+    await expect(
+      page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Activated' })
+        .getByRole('listitem')
+    ).toHaveCount(0);
+
+    expect(
+      await page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Deactivated' })
+        .getByRole('listitem')
+        .count()
+    ).toBeGreaterThan(1);
+  });
+
+  test('should activate all contacts', async ({ page }) => {
+    await page
+      .locator('header')
+      .filter({ hasText: 'Select all Deactivated' })
+      .getByLabel('Select all')
+      .check();
+    await page.getByLabel('Activate contact', { exact: true }).click();
+
+    await expect(
+      page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Deactivated' })
+        .getByRole('listitem')
+    ).toHaveCount(0);
+
+    expect(
+      await page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Activated' })
+        .getByRole('listitem')
+        .count()
+    ).toBeGreaterThan(1);
+  });
+
+  test('should deactivate a single contact', async ({ page }) => {
+    await page.getByText('Name', { exact: true }).click();
+    await page.getByLabel('Deactivate contact', { exact: true }).click();
+    await expect(
+      page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Activated' })
+        .locator('ul')
+        .getByText('Name', { exact: true })
+    ).not.toBeVisible();
+
+    await expect(
+      page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Deactivated' })
+        .locator('ul')
+        .getByText('Name', { exact: true })
+    ).toBeVisible();
+  });
+
+  test('should rename deactivated contact', async ({ page }) => {
+    const listItem = page
+      .getByRole('main')
+      .locator('div')
+      .filter({ hasText: 'Select all Deactivated' })
+      .getByRole('listitem');
+
+    await listItem.filter({ hasText: 'Name' }).getByRole('button', { name: 'Rename' }).click();
+    await page.getByPlaceholder('Enter the new name').fill('Sopal');
+    await page.getByRole('button', { name: 'Confirm' }).click();
+
+    await expect(page.getByText('Sopal')).toBeVisible();
+    await expect(listItem.getByText('Name', { exact: true })).not.toBeVisible();
+
+    await listItem.filter({ hasText: 'Sopal' }).getByRole('button', { name: 'Rename' }).click();
+    await page.getByPlaceholder('Enter the new name').fill('Name');
+    await page.getByRole('button', { name: 'Confirm' }).click();
+  });
+
+  test('should not display deactiave contact on the input list', async ({ page }) => {
+    await page.goto('/');
+    await page.getByLabel('show more inputs button').click();
+    await page.getByLabel('show allocated to input', { exact: true }).click();
+
+    await expect(page.getByPlaceholder('Allocated to...')).toHaveAttribute('list', 'names');
+    await expect(page.locator('datalist')).toHaveAttribute('id', 'names');
+    await expect(page.locator('datalist option')).not.toHaveText('Name');
+  });
+
+  test('should activate a single contact', async ({ page }) => {
+    await page.getByText('Name', { exact: true }).click();
+    await page.getByLabel('Activate contact', { exact: true }).click();
+    await expect(
+      page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Activated' })
+        .locator('ul')
+        .getByText('Name', { exact: true })
+    ).toBeVisible();
+
+    await expect(
+      page
+        .getByRole('main')
+        .locator('div')
+        .filter({ hasText: 'Select all Deactivated' })
+        .locator('ul')
+        .getByText('Name', { exact: true })
+    ).not.toBeVisible();
+  });
+
+  test('should remove contact', async ({ page }) => {
+    await page
+      .locator('li')
+      .filter({ hasText: updatedContact })
+      .getByRole('button', { name: 'Remove' })
+      .click();
+
+    await page.getByRole('button', { name: 'OK' }).click();
+    await expect(page.getByText(updatedContact)).not.toBeVisible();
+
+    await page.goto('/waiting_for');
+    await expect(page.getByText(updatedContact)).not.toBeVisible();
+    await expect(page.getByText(task)).not.toBeVisible();
+
+    await page.goto('/');
+    await expect(page.getByText(task)).toBeVisible();
+  });
 });
-
-// test.describe('contact CRUD test on the deactivate list', () => {});
-
-// should deactivate single contact
-// should not display deactivated contact on the input list // Can I test this?
-// CRUD on the deactivated list
-
-// should check all checkbox on the list(activated)
-// should check all checkbox on the list(deactivated)
-// should activate single contact
-// should deactivate multiple contact
-// should activate multiple contact
-// should deactivate all contact
-// should activate all contact
