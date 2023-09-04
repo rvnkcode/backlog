@@ -3,6 +3,7 @@
   import EachContact from '../molecules/EachContact.svelte';
   import { selectedContacts } from '$lib/stores';
   import { invalidateAll } from '$app/navigation';
+  import { onMount } from 'svelte';
 
   export let list: People[];
   export let listTitle: string;
@@ -22,6 +23,12 @@
 
     invalidateAll();
   };
+
+  onMount(() => {
+    console.log('mounted')
+    $selectedContacts.clear();
+    console.log($selectedContacts)
+  })
 </script>
 
 <!-- TODO: Adjust border color? -->

@@ -4,6 +4,7 @@
   import { trpc } from '$lib/trpcClient';
   import type { People } from '@prisma/client';
   import ContactDeletionConfirmModal from '../organisms/ContactDeletionConfirmModal.svelte';
+  import { onMount } from 'svelte';
 
   export let contact: People;
 
@@ -30,6 +31,10 @@
     isEdit = false;
     value = contact.name;
   };
+
+  onMount(() => {
+    checked = $selectedContacts.has(contact.id);
+  });
 </script>
 
 <li class="flex justify-between itmes-center">
