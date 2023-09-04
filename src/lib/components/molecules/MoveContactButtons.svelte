@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import { invalidateAll } from '$app/navigation';
   import { selectedContacts } from '$lib/stores';
   import { trpc } from '$lib/trpcClient';
-  import { onMount } from 'svelte';
 
   const deactivateContacts = async (ids: Set<number>) => {
     if (ids.size < 1) return; // Do nothing

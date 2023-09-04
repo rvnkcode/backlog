@@ -1,5 +1,6 @@
-import { publicProcedure, router } from '$lib/server/trpc';
 import { z } from 'zod';
+
+import { publicProcedure, router } from '$lib/server/trpc';
 
 export const contactRouter = router({
   getContacts: publicProcedure.query(async ({ ctx }) => {

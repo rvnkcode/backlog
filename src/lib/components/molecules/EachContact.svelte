@@ -1,10 +1,12 @@
 <script lang="ts">
+  import type { People } from '@prisma/client';
+  import { onMount } from 'svelte';
+
   import { invalidateAll } from '$app/navigation';
   import { selectedContacts } from '$lib/stores';
   import { trpc } from '$lib/trpcClient';
-  import type { People } from '@prisma/client';
+
   import ContactDeletionConfirmModal from '../organisms/ContactDeletionConfirmModal.svelte';
-  import { onMount } from 'svelte';
 
   export let contact: People;
 

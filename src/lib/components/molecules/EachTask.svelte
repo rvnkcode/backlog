@@ -1,11 +1,11 @@
 <script lang="ts">
+  import { page } from '$app/stores';
   import type { RouterOutput } from '$lib/server/router';
 
   import TaskCheckbox from '../atoms/TaskCheckbox.svelte';
   import TaskDeleteButton from '../atoms/TaskDeleteButton.svelte';
   import TaskTitle from '../atoms/TaskTitle.svelte';
   import TaskInfoIcons from '../molecules/TaskInfoIcons.svelte';
-  import { page } from '$app/stores';
 
   export let task: RouterOutput['list']['getInbox'][number];
 

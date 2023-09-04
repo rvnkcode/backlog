@@ -1,9 +1,11 @@
 <script lang="ts">
   import type { People } from '@prisma/client';
-  import EachContact from '../molecules/EachContact.svelte';
-  import { selectedContacts } from '$lib/stores';
-  import { invalidateAll } from '$app/navigation';
   import { onMount } from 'svelte';
+
+  import { invalidateAll } from '$app/navigation';
+  import { selectedContacts } from '$lib/stores';
+
+  import EachContact from '../molecules/EachContact.svelte';
 
   export let list: People[];
   export let listTitle: string;
@@ -26,7 +28,7 @@
 
   onMount(() => {
     $selectedContacts.clear();
-  })
+  });
 </script>
 
 <!-- TODO: Adjust border color? -->

@@ -1,6 +1,7 @@
 <script lang="ts">
-  import ContactList from '$lib/components/organisms/ContactList.svelte';
   import MoveContactButtons from '$lib/components/molecules/MoveContactButtons.svelte';
+  import ContactList from '$lib/components/organisms/ContactList.svelte';
+
   import type { PageServerData } from './$types';
 
   export let data: PageServerData;
