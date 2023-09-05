@@ -1,8 +1,9 @@
 <script lang="ts">
-  import Modal from '$lib/components/organisms/Modal.svelte';
-  import { trpc } from '$lib/trpcClient';
   import Papa from 'papaparse';
   import toast from 'svelte-french-toast';
+
+  import Modal from '$lib/components/organisms/Modal.svelte';
+  import { trpc } from '$lib/trpcClient';
 
   export let open: boolean;
 
