@@ -62,6 +62,12 @@ dialog {
 
 dialog > header {
   font-weight: bold;
+  font-size: 1rem;
+}
+
+dialog > footer {
+  text-align: right;
+  margin-top: 1rem;
 }
 
 div.backdrop {
