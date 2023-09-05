@@ -1,5 +1,6 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation';
+  import Modal from '$lib/components/organisms/Modal.svelte';
   import { trpc } from '$lib/trpcClient';
 
   export let open: boolean;
@@ -10,19 +11,13 @@
     invalidateAll();
     open = false;
   };
-
-  const closeModal = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      open = false;
-    } else return;
-  };
 </script>
 
 {#if open}
   <div class="backdrop" />
 {/if}
 
-<dialog {open} class="p-4">
+<Modal bind:open>
   <header>Remove contact</header>
 
   <p>
@@ -30,7 +25,7 @@
     It is also deleted from allocated tasks
   </p>
 
-  <footer class="text-right">
+  <footer>
     <button
       type="button"
       class="general mr-1"
@@ -40,6 +35,4 @@
     >
     <button type="button" class="general primary" on:click={deleteContact}>OK</button>
   </footer>
-</dialog>
-
-<svelte:window on:keydown={closeModal} />
+</Modal>
