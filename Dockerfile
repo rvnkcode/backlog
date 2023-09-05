@@ -39,8 +39,6 @@ COPY --from=prod-build /app/prod_node_modules /app/node_modules
 COPY --from=build /app/build ./build
 COPY --from=build /app/prisma ./prisma
 
-RUN mkdir /memo && chown node /memo
-
 # TODO: Change exposed port number?
 ENV ORIGIN=http://localhost:3000
 EXPOSE 3000

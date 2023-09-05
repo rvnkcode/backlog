@@ -9,7 +9,15 @@ Currently under development.
 ### Test version
 
 ```bash
-docker run -d --name backlog -p 3000:3000 -v ~/.backlog/:/memo rvnk/backlog:test
+docker run -d --name backlog -p 3000:3000 -v ~/.backlog/:/app/data rvnk/backlog:test
+```
+
+#### Docker Compose
+
+Provided `docker-compose.yml` is [here](./docker-compose.yml).
+
+```bash
+docker-compose down && docker image rm rvnk/backlog:test && docker-compose up -d
 ```
 
 ### Build image locally
@@ -21,7 +29,7 @@ docker image build -t rvnk/backlog:test .
 <!-- ### Docker Run
 
 ```bash
-docker run -d --name backlog -p 3000:3000 -v ~/.backlog/:/memo rvnk/backlog:latest
+docker run -d --name backlog -p 3000:3000 -v ~/.backlog/:/app/data rvnk/backlog:latest
 ```
 
 ### Docker Compose

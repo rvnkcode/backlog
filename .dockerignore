@@ -4,15 +4,15 @@
 .svelte-kit
 .vscode
 build
+data
 img
 node_modules
+prisma/migrations
 prisma/seed.ts
 sql
 test-results
 tests
 tests-examples
-.env.example
-*.log
 .env.example
 .eslint*
 .git*
@@ -21,3 +21,4 @@ docker-compose.yml
 Dockerfile*
 playwright.config.ts
 README.md
+*.log

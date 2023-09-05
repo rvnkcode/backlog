@@ -4,6 +4,6 @@ services:
     image: rvnk/backlog:test
     container_name: backlog
     volumes:
-      - ~/.backlog:/memo
+      - ~/.backlog:/app/data
     ports:
       - 3000:3000
