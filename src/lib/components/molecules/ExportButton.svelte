@@ -1,13 +1,13 @@
 <script lang="ts">
   import ExportModal from '$lib/components/organisms/ExportModal.svelte';
 
-  let exportModalOpen = false;
+  let open = false;
 </script>
 
 <button
   type="button"
   on:click={() => {
-    exportModalOpen = true;
+    open = true;
   }}
   class="flex items-center"
 >
@@ -15,4 +15,4 @@
   <span class="text-base">Export</span>
 </button>
 
-<ExportModal bind:open={exportModalOpen} />
+<ExportModal bind:open />

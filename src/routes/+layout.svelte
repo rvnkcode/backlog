@@ -4,6 +4,7 @@
   import { Toaster } from 'svelte-french-toast';
 
   import ExportButton from '$lib/components/molecules/ExportButton.svelte';
+  import ImportButton from '$lib/components/molecules/ImportButton.svelte';
   import SideMenu from '$lib/components/organisms/SideMenu.svelte';
 
   import type { LayoutServerData } from './$types';
@@ -29,6 +30,7 @@
   </h1>
 
   <div class="flex gap-3">
+    <ImportButton />
     <ExportButton />
     <a href="/settings" class="flex items-center">
       <ion-icon name="settings" class="mr-1" aria-label="Settings icon" role="img" />
