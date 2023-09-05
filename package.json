@@ -25,6 +25,7 @@
     "@sveltejs/kit": "^1.20.4",
     "@tailwindcss/forms": "^0.5.4",
     "@types/node": "^20.3.1",
+    "@types/papaparse": "^5.3.8",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "autoprefixer": "^10.4.14",
@@ -57,6 +58,7 @@
     "@trpc/server": "^10.32.0",
     "date-fns": "^2.30.0",
     "dotenv": "^16.3.1",
+    "papaparse": "^5.4.1",
     "superjson": "^1.12.4",
     "svelte-french-toast": "^1.2.0",
     "zod": "^3.21.4"
