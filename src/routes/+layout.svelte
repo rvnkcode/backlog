@@ -3,6 +3,7 @@
 
   import { Toaster } from 'svelte-french-toast';
 
+  import ExportModal from '$lib/components/organisms/ExportModal.svelte';
   import SideMenu from '$lib/components/organisms/SideMenu.svelte';
 
   import type { LayoutServerData } from './$types';
@@ -11,6 +12,7 @@
   $: ({ count } = data);
 
   let showMenu = false;
+  let exportModalOpen = false;
 </script>
 
 <header class="px-2 flex justify-between items-center">
@@ -27,10 +29,22 @@
     <a href="/">Backlog</a>
   </h1>
 
-  <a href="/settings" class="flex items-center">
-    <ion-icon name="settings" class="mr-1" aria-label="Settings icon" role="img" />
-    <span class="text-base">Settings</span>
-  </a>
+  <div class="flex gap-3">
+    <button
+      type="button"
+      on:click={() => {
+        exportModalOpen = true;
+      }}
+      class="flex items-center"
+    >
+      <ion-icon name="share" class="mr-1" aria-label="Export icon" role="img" />
+      <span class="text-base">Export</span>
+    </button>
+    <a href="/settings" class="flex items-center">
+      <ion-icon name="settings" class="mr-1" aria-label="Settings icon" role="img" />
+      <span class="text-base">Settings</span>
+    </a>
+  </div>
 </header>
 
 <section class="flex">
@@ -47,3 +61,4 @@
 </section>
 
 <Toaster />
+<ExportModal bind:open={exportModalOpen} />

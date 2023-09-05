@@ -2,6 +2,7 @@ import type { Prisma } from '@prisma/client';
 
 import { publicProcedure } from '$lib/server/trpc';
 import { router } from '$lib/server/trpc';
+import { exportOptionsSchema } from '$lib/zod';
 
 const filter: Prisma.TaskWhereInput = {
   isTrashed: false,
@@ -71,7 +72,12 @@ export const listRouter = router({
     return { inboxCount, waitingForCount };
   }),
 
-  getAllTasks: publicProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.task.findMany();
+  getAllTasks: publicProcedure.input(exportOptionsSchema).query(async ({ ctx, input }) => {
+    return await ctx.prisma.task.findMany({
+      where: {
+        isTrashed: input.isIncludedTrashed ? undefined : false,
+        isDone: input.isIncludedCompleted ? undefined : false
+      }
+    });
   })
 });

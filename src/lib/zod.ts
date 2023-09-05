@@ -22,3 +22,8 @@ export const taskSchema = z.object({
 });
 
 export type TaskSchema = typeof taskSchema;
+
+export const exportOptionsSchema = z.object({
+  isIncludedTrashed: z.boolean().default(true),
+  isIncludedCompleted: z.boolean().default(true)
+});
