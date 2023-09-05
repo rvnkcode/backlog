@@ -69,5 +69,9 @@ export const listRouter = router({
     ]);
 
     return { inboxCount, waitingForCount };
+  }),
+
+  getAllTasks: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.task.findMany();
   })
 });
