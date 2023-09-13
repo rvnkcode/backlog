@@ -9,7 +9,7 @@ Currently under development.
 ### Test version
 
 ```bash
-docker run -d --name backlog -p 3000:3000 -v ~/.backlog/:/app/data rvnk/backlog:test
+docker run -d --name backlog -p 7081:3000 -v ~/.backlog/:/app/data rvnk/backlog:test
 ```
 
 #### Docker Compose
