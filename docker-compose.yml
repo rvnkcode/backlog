@@ -6,4 +6,4 @@ services:
     volumes:
       - ~/.backlog:/app/data
     ports:
-      - 3000:3000
+      - 7081:3000
