@@ -1,5 +1,13 @@
 <script lang="ts">
+  import { AutoResizeTextarea } from 'svelte-autoresize-textarea';
+
   export let note: string | null;
 </script>
 
-<textarea name="note" placeholder="Notes" bind:value={note} class="w-full mt-1" rows="4" />
+<AutoResizeTextarea
+  bind:value={note}
+  minRows={4}
+  class="w-full mt-1"
+  name="note"
+  placeholder="Notes"
+/>
